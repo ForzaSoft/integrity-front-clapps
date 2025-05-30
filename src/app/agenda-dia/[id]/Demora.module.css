@@ -1,0 +1,15 @@
+.content {
+  display: flex;
+  gap: 15px;
+  padding: 0 1.25rem;
+  font-size: 0.875rem;
+}
+
+.label {
+  color: #4c5260;
+}
+
+.value {
+  font-weight: 700;
+  color: #e10000;
+}

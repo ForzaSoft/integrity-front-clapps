@@ -1,0 +1,57 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  color: var(--foreground);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.backdrop {
+  width: 100%;
+  height: 100%;
+}
+
+.panel {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 4rem;
+  width: 50rem;
+  display: flex;
+  flex-direction: column;
+  color: #4c5260;
+  background-color: white;
+  border-radius: 0.5rem 0 0 0;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5em 1em;
+  background: var(--gradiente-azul);
+  color: white;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-start;
+  height: 100%;
+  padding: 0.5em 0.5rem 0.5rem 1em;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 0.5em 1em;
+}

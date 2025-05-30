@@ -1,0 +1,29 @@
+.filter {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.filter input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px white solid;
+  color: white;
+  width: 150px;
+  font-weight: normal;
+  &:focus {
+    outline: none;
+  }
+}
+
+.filter .settings {
+  display: flex;
+  align-items: center;
+  gap: 0rem;
+  margin-left: 1em;
+
+  span {
+    font-size: 0.7rem;
+    font-weight: normal;
+  }
+}

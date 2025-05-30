@@ -1,0 +1,40 @@
+@baseUrl = https://integrityback.forzasoft.com.ar
+@AgendaId = 1
+@Fecha = 2025-03-17
+@TurnoId = 3577
+
+### Lista Agenda por Día
+GET {{baseUrl}}/Agendas/ListVistaAgendaDia
+    ?AgendaId={{AgendaId}}
+    &Fecha={{Fecha}}
+Content-Type: application/json
+
+### Lista Fechas con Turnos
+GET {{baseUrl}}/Agendas/ListFechasConTurnos
+    ?AgendaId={{AgendaId}}
+Content-Type: application/json
+
+### Lista Agendas Activas
+GET {{baseUrl}}/Agendas/ListVistaAgendasActivas
+Content-Type: application/json
+
+### Turno por Id
+GET {{baseUrl}}/Turnos/InformacionTurno
+    ?IdTurno={{TurnoId}}
+Content-Type: application/json
+
+### Lista Nomencladores
+GET {{baseUrl}}/Nomencladores/GetAll
+Content-Type: application/json
+
+### Lista Especialidades
+GET {{baseUrl}}/Especialidades/GetAll
+Content-Type: application/json
+
+### Lista Tipo de Nomencladores
+GET {{baseUrl}}/NomencladorTipos/GetAll
+Content-Type: application/json
+
+### Lista Agendas Activas
+GET {{baseUrl}}/Agendas/ListAgendasActivas
+Content-Type: application/json

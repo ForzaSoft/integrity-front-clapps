@@ -1,0 +1,11 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+  height: 1.375rem;
+  padding: 0 0.5rem;
+  font-size: 0.875rem;
+  color: #1530bb;
+  background-color: #dde1fe;
+  border: 1px solid #a8c6ff;
+  border-radius: 0.5rem;
+}

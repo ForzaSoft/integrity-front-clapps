@@ -1,0 +1,55 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 0.5rem 0.5rem 0 0;
+  overflow: hidden;
+
+  & thead {
+    color: white;
+    background: var(--gradiente-azul);
+  }
+
+  & tbody {
+    color: #4c5260;
+
+    & tr:hover {
+      background-color: #d6ebff;
+    }
+
+    & tr.highlighted {
+      background-color: #a6d4ff;
+    }
+  }
+
+  & tr {
+    border-bottom: 1px solid #e7e7e7;
+  }
+
+  & th {
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.125rem;
+  }
+
+  & th.urgente,
+  & th.bloqueado {
+    max-width: 1em;
+  }
+
+  & th,
+  & td {
+    padding: 0.625em;
+
+    &.left {
+      text-align: left;
+    }
+
+    &.right {
+      text-align: right;
+    }
+
+    &.center {
+      text-align: center;
+    }
+  }
+}

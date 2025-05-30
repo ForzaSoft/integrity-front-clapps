@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border-radius: 12px;
+  background-color: #f8f8f8;
+}
+
+.dayPicker {
+  width: 228px;
+}
+
+.dayPicker :global(.modifier-points) {
+  display: inline-block;
+  position: relative;
+}
+
+.dayPicker :global(.modifier-points::after) {
+  content: '.';
+  font-weight: bold;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  color: #023e8a;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.dayPicker :global(.rdp-day.rdp-today .rdp-day_button) {
+  color: #3185ef !important;
+}
+
+.dayPicker :global(.rdp-day.rdp-selected .rdp-day_button) {
+  color: #ffffff !important;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-left: 0.5rem;
+  border-left: solid 1px #ffffff;
+}
+
+.navLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #4c5260;
+  padding-left: 0.25rem;
+}
+
+.buttonGroup {
+  display: flex;
+}
+
+.yesterdayButton {
+  font-size: 0.75rem;
+  padding: 0 0.7rem;
+  border-radius: 1rem 0 0 1rem !important;
+}
+
+.todayButton {
+  font-size: 0.75rem;
+  padding: 0 0.7rem;
+  border-left: none;
+  border-right: none;
+  border-radius: 0 !important;
+}
+
+.tomorrowButton {
+  font-size: 0.75rem;
+  padding: 0 0.7rem;
+  border-radius: 0 1rem 1rem 0 !important;
+}

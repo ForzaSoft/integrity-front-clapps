@@ -1,0 +1,43 @@
+.title {
+  padding: 1rem;
+}
+
+.section {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  align-items: center;
+  justify-items: center;
+  gap: 0 0.5rem;
+  padding: 1rem;
+}
+
+.darkBackground {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: lightgray;
+  padding: 0.75rem;
+}
+
+.icons {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+  padding: 1rem;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    & > i {
+      font-size: 1.5rem;
+    }
+  }
+}

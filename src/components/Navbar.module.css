@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 7.5rem 0 1.25rem 0;
+  color: white;
+  background: linear-gradient(164.21deg, #0049a5 6.02%, #0067e9 47.48%, #4d9bff 93.3%);
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}

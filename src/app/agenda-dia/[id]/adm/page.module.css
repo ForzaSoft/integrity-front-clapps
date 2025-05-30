@@ -1,0 +1,71 @@
+.Cancelado {
+  background: var(--bg-cancelado);
+}
+
+.Atendido {
+  background: var(--bg-atendido);
+}
+
+.Atendiendo {
+  background: var(--bg-atendiendo);
+}
+
+.Presente {
+  background: var(--bg-presente);
+}
+
+.Confirmado {
+  background: var(--bg-confirmado);
+}
+
+.Controlado {
+  background: var(--bg-controlado);
+}
+
+.Llamado {
+  background: var(--bg-llamado);
+}
+
+.Bloqueado {
+  background: var(--bg-bloqueado);
+  color: var(--color-bloqueado);
+}
+
+.Vacio {
+}
+
+.Asignado {
+}
+
+.Urgente {
+  color: var(--color-urgente);
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.buttonGroup button {
+  flex: 1;
+}
+
+.buttonGroup2 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.TurnoNormal {
+  height: 40px;
+}
+
+.TurnoDoble {
+  height: 80px;
+}
+
+.TurnoTriple {
+  height: 120px;
+}

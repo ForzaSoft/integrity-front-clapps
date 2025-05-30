@@ -1,0 +1,15 @@
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25em 1em;
+  width: 100%;
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  color: #4c5260;
+}
+
+.success {
+  background-color: #e4f9d7;
+  border: 1px solid #62b72d;
+}

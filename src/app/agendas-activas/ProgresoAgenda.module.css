@@ -1,0 +1,19 @@
+.bar {
+  display: inline-flex;
+  width: 7.5rem;
+  height: 0.375rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.presentes {
+  background-color: #1530bb;
+}
+
+.atendidos {
+  background-color: #62b72d;
+}
+
+.sinLlegar {
+  background-color: #e7e7e7;
+}

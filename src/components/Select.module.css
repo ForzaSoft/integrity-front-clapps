@@ -1,0 +1,27 @@
+.select {
+  font-family: var(--font-rubik);
+  width: 100%;
+  color: var(--foreground);
+  background-color: var(--background);
+
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.select:focus {
+  border-color: #007bff;
+}
+
+.md {
+  height: 1.525rem;
+  padding: 0 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.lg {
+  font-size: 1.25rem;
+  height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+}

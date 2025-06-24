@@ -31,3 +31,5 @@ typings/
 *.tgz
 
 .next
+*storybook.log
+storybook-static

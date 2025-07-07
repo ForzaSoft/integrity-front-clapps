@@ -39,19 +39,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Opciones de ejemplo para diferentes casos
 const stringOptions: DropdownOption<string>[] = [
   { value: 'opcion1', label: 'Opción 1' },
   { value: 'opcion2', label: 'Opción 2' },
   { value: 'opcion3', label: 'Opción 3' },
-];
-
-const numberOptions: DropdownOption<number>[] = [
-  { value: 1, label: 'Uno' },
-  { value: 2, label: 'Dos' },
-  { value: 3, label: 'Tres' },
-  { value: 4, label: 'Cuatro' },
-  { value: 5, label: 'Cinco' },
 ];
 
 const monthOptions: DropdownOption<number>[] = [
@@ -78,21 +69,12 @@ const yearOptions: DropdownOption<number>[] = [
   { value: 2025, label: '2025' },
 ];
 
-// Dropdown básico con strings
 export const Basic: Story = {
   args: {
     options: stringOptions,
   },
 };
 
-// Dropdown con números
-export const WithNumbers: Story = {
-  args: {
-    options: numberOptions,
-  },
-};
-
-// Dropdown con selección inicial
 export const WithPreselected: Story = {
   args: {
     options: stringOptions,
@@ -100,33 +82,6 @@ export const WithPreselected: Story = {
   },
 };
 
-// Dropdown de meses
-export const MonthSelector: Story = {
-  args: {
-    options: monthOptions,
-    selected: new Date().getMonth(), // mes actual
-  },
-};
-
-// Dropdown de años
-export const YearSelector: Story = {
-  args: {
-    options: yearOptions,
-    selected: new Date().getFullYear(), // año actual
-  },
-};
-
-// Dropdown con muchas opciones
-export const WithManyOptions: Story = {
-  args: {
-    options: Array.from({ length: 20 }, (_, i) => ({
-      value: i + 1,
-      label: `Opción ${i + 1}`,
-    })),
-  },
-};
-
-// Dropdown interactivo
 export const Interactive = {
   render: () => {
     const [selectedOption, setSelectedOption] = useState<string>('opcion1');
@@ -182,50 +137,49 @@ export const Interactive = {
   },
 };
 
-// Casos de uso del sistema médico
+const specialtyOptions: DropdownOption<string>[] = [
+  { value: 'cardiology', label: 'Cardiología' },
+  { value: 'dermatology', label: 'Dermatología' },
+  { value: 'neurology', label: 'Neurología' },
+  { value: 'pediatrics', label: 'Pediatría' },
+  { value: 'psychiatry', label: 'Psiquiatría' },
+  { value: 'surgery', label: 'Cirugía' },
+];
+
+const doctorsBySpecialty: Record<string, DropdownOption<number>[]> = {
+  cardiology: [
+    { value: 1, label: 'Dr. García' },
+    { value: 2, label: 'Dra. López' },
+    { value: 3, label: 'Dr. Martínez' },
+  ],
+  dermatology: [
+    { value: 4, label: 'Dra. Rodríguez' },
+    { value: 5, label: 'Dr. Fernández' },
+  ],
+  neurology: [
+    { value: 6, label: 'Dr. Sánchez' },
+    { value: 7, label: 'Dra. Ruiz' },
+    { value: 8, label: 'Dr. Morales' },
+  ],
+  pediatrics: [
+    { value: 9, label: 'Dra. Torres' },
+    { value: 10, label: 'Dr. Vargas' },
+  ],
+  psychiatry: [
+    { value: 11, label: 'Dr. Castro' },
+    { value: 12, label: 'Dra. Herrera' },
+  ],
+  surgery: [
+    { value: 13, label: 'Dr. Mendoza' },
+    { value: 14, label: 'Dra. Silva' },
+    { value: 15, label: 'Dr. Reyes' },
+  ],
+};
+
 export const MedicalSystem = {
   render: () => {
     const [selectedSpecialty, setSelectedSpecialty] = useState<string>('cardiology');
     const [selectedDoctor, setSelectedDoctor] = useState<number>(1);
-
-    const specialtyOptions: DropdownOption<string>[] = [
-      { value: 'cardiology', label: 'Cardiología' },
-      { value: 'dermatology', label: 'Dermatología' },
-      { value: 'neurology', label: 'Neurología' },
-      { value: 'pediatrics', label: 'Pediatría' },
-      { value: 'psychiatry', label: 'Psiquiatría' },
-      { value: 'surgery', label: 'Cirugía' },
-    ];
-
-    const doctorsBySpecialty: Record<string, DropdownOption<number>[]> = {
-      cardiology: [
-        { value: 1, label: 'Dr. García' },
-        { value: 2, label: 'Dra. López' },
-        { value: 3, label: 'Dr. Martínez' },
-      ],
-      dermatology: [
-        { value: 4, label: 'Dra. Rodríguez' },
-        { value: 5, label: 'Dr. Fernández' },
-      ],
-      neurology: [
-        { value: 6, label: 'Dr. Sánchez' },
-        { value: 7, label: 'Dra. Ruiz' },
-        { value: 8, label: 'Dr. Morales' },
-      ],
-      pediatrics: [
-        { value: 9, label: 'Dra. Torres' },
-        { value: 10, label: 'Dr. Vargas' },
-      ],
-      psychiatry: [
-        { value: 11, label: 'Dr. Castro' },
-        { value: 12, label: 'Dra. Herrera' },
-      ],
-      surgery: [
-        { value: 13, label: 'Dr. Mendoza' },
-        { value: 14, label: 'Dra. Silva' },
-        { value: 15, label: 'Dr. Reyes' },
-      ],
-    };
 
     const currentDoctors = doctorsBySpecialty[selectedSpecialty] || [];
 
@@ -243,7 +197,6 @@ export const MedicalSystem = {
               selected={selectedSpecialty}
               onSelected={(value) => {
                 setSelectedSpecialty(value);
-                // Reset doctor selection when specialty changes
                 setSelectedDoctor(doctorsBySpecialty[value]?.[0]?.value || 0);
               }}
             />
@@ -304,47 +257,45 @@ export const MedicalSystem = {
   },
 };
 
-// Dropdown sin opciones
 export const Empty: Story = {
   args: {
     options: [],
   },
 };
 
-// Dropdown con una sola opción
 export const SingleOption: Story = {
   args: {
     options: [{ value: 'unico', label: 'Única opción' }],
   },
 };
 
-// Múltiples dropdowns en grupo
+const dayOptions: DropdownOption<number>[] = Array.from({ length: 31 }, (_, i) => ({
+  value: i + 1,
+  label: (i + 1).toString(),
+}));
+
+const months = [
+  'enero',
+  'febrero',
+  'marzo',
+  'abril',
+  'mayo',
+  'junio',
+  'julio',
+  'agosto',
+  'septiembre',
+  'octubre',
+  'noviembre',
+  'diciembre',
+];
+
 export const DateSelector = {
   render: () => {
     const [selectedDay, setSelectedDay] = useState<number>(1);
     const [selectedMonth, setSelectedMonth] = useState<number>(0);
     const [selectedYear, setSelectedYear] = useState<number>(2024);
 
-    const dayOptions: DropdownOption<number>[] = Array.from({ length: 31 }, (_, i) => ({
-      value: i + 1,
-      label: (i + 1).toString(),
-    }));
-
     const formatSelectedDate = () => {
-      const months = [
-        'enero',
-        'febrero',
-        'marzo',
-        'abril',
-        'mayo',
-        'junio',
-        'julio',
-        'agosto',
-        'septiembre',
-        'octubre',
-        'noviembre',
-        'diciembre',
-      ];
       return `${selectedDay} de ${months[selectedMonth]} de ${selectedYear}`;
     };
 

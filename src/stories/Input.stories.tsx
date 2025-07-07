@@ -49,7 +49,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Input básico tamaño medio
 export const Basic: Story = {
   args: {
     placeholder: 'Ingrese su texto aquí...',
@@ -57,7 +56,6 @@ export const Basic: Story = {
   },
 };
 
-// Input pequeño
 export const Small: Story = {
   args: {
     placeholder: 'Input pequeño',
@@ -65,7 +63,6 @@ export const Small: Story = {
   },
 };
 
-// Input mediano (default)
 export const Medium: Story = {
   args: {
     placeholder: 'Input mediano',
@@ -73,7 +70,6 @@ export const Medium: Story = {
   },
 };
 
-// Input grande
 export const Large: Story = {
   args: {
     placeholder: 'Input grande',
@@ -81,7 +77,6 @@ export const Large: Story = {
   },
 };
 
-// Comparación de tamaños
 export const SizeComparison = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -107,7 +102,6 @@ export const SizeComparison = {
   ),
 };
 
-// Diferentes tipos de input
 export const InputTypes = {
   render: () => (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px' }}>
@@ -139,7 +133,6 @@ export const InputTypes = {
   ),
 };
 
-// Estados del input
 export const InputStates = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -171,7 +164,6 @@ export const InputStates = {
   ),
 };
 
-// Formulario interactivo
 export const InteractiveForm = {
   render: () => {
     const [formData, setFormData] = useState({
@@ -263,7 +255,6 @@ export const InteractiveForm = {
   },
 };
 
-// Sistema médico - Datos del paciente
 export const MedicalSystem = {
   render: () => {
     const [patientData, setPatientData] = useState({
@@ -406,7 +397,6 @@ export const MedicalSystem = {
   },
 };
 
-// Inputs con validación
 export const WithValidation = {
   render: () => {
     const [values, setValues] = useState({

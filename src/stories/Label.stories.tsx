@@ -26,35 +26,30 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Label básica
 export const Basic: Story = {
   args: {
     children: 'Etiqueta',
   },
 };
 
-// Label con texto corto
 export const Short: Story = {
   args: {
     children: 'OK',
   },
 };
 
-// Label con texto largo
 export const Long: Story = {
   args: {
     children: 'Etiqueta con texto más largo',
   },
 };
 
-// Label con número
 export const WithNumber: Story = {
   args: {
     children: '42',
   },
 };
 
-// Diferentes casos de uso
 export const UseCases = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -101,7 +96,6 @@ export const UseCases = {
   ),
 };
 
-// Labels en contexto de lista
 export const InList = {
   render: () => (
     <div style={{ maxWidth: '400px' }}>
@@ -166,7 +160,6 @@ export const InList = {
   ),
 };
 
-// Labels con íconos y texto
 export const WithIcons = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -195,7 +188,6 @@ export const WithIcons = {
   ),
 };
 
-// Labels en contexto de tabla
 export const InTable = {
   render: () => (
     <div style={{ maxWidth: '600px' }}>
@@ -244,7 +236,6 @@ export const InTable = {
   ),
 };
 
-// Labels múltiples en un elemento
 export const Multiple = {
   render: () => (
     <div style={{ maxWidth: '500px' }}>
@@ -292,7 +283,6 @@ export const Multiple = {
   ),
 };
 
-// Casos extremos
 export const EdgeCases = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>

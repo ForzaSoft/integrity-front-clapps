@@ -32,7 +32,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Caja básica con título
 export const Basic: Story = {
   args: {
     titulo: 'Título de la Caja',
@@ -45,7 +44,6 @@ export const Basic: Story = {
   },
 };
 
-// Caja sin título
 export const WithoutTitle: Story = {
   args: {
     children: (
@@ -58,7 +56,6 @@ export const WithoutTitle: Story = {
   },
 };
 
-// Caja con contenido simple
 export const SimpleContent: Story = {
   args: {
     titulo: 'Información',
@@ -66,7 +63,6 @@ export const SimpleContent: Story = {
   },
 };
 
-// Caja con lista
 export const WithList: Story = {
   args: {
     titulo: 'Lista de Elementos',
@@ -81,7 +77,6 @@ export const WithList: Story = {
   },
 };
 
-// Caja con botones
 export const WithActions: Story = {
   args: {
     titulo: 'Acciones del Usuario',
@@ -104,7 +99,6 @@ export const WithActions: Story = {
   },
 };
 
-// Caja con formulario
 export const WithForm: Story = {
   args: {
     titulo: 'Datos del Paciente',
@@ -151,7 +145,6 @@ export const WithForm: Story = {
   },
 };
 
-// Caja con métricas
 export const WithMetrics: Story = {
   args: {
     titulo: 'Estadísticas del Día',
@@ -178,7 +171,6 @@ export const WithMetrics: Story = {
   },
 };
 
-// Caja con estado de carga
 export const Loading: Story = {
   args: {
     titulo: 'Cargando Datos',
@@ -209,7 +201,6 @@ export const Loading: Story = {
   },
 };
 
-// Caja con contenido largo
 export const WithLongContent: Story = {
   args: {
     titulo: 'Descripción Detallada',
@@ -232,7 +223,6 @@ export const WithLongContent: Story = {
   },
 };
 
-// Caja con tabla
 export const WithTable: Story = {
   args: {
     titulo: 'Horarios de Atención',

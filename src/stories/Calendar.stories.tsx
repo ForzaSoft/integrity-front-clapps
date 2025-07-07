@@ -35,110 +35,29 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Calendar básico sin fechas marcadas
 export const Basic: Story = {
   args: {
     points: [],
   },
 };
 
-// Calendar con fechas marcadas (points)
-export const WithPoints: Story = {
-  args: {
-    points: [
-      new Date(2024, 2, 15), // 15 de marzo
-      new Date(2024, 2, 20), // 20 de marzo
-      new Date(2024, 2, 25), // 25 de marzo
-      new Date(2024, 2, 28), // 28 de marzo
-    ],
-  },
-};
-
-// Calendar con muchas fechas marcadas
-export const WithManyPoints: Story = {
-  args: {
-    points: [
-      // Fechas de marzo 2024
-      new Date(2024, 2, 1),
-      new Date(2024, 2, 3),
-      new Date(2024, 2, 5),
-      new Date(2024, 2, 8),
-      new Date(2024, 2, 10),
-      new Date(2024, 2, 12),
-      new Date(2024, 2, 15),
-      new Date(2024, 2, 17),
-      new Date(2024, 2, 19),
-      new Date(2024, 2, 22),
-      new Date(2024, 2, 24),
-      new Date(2024, 2, 26),
-      new Date(2024, 2, 29),
-    ],
-  },
-};
-
-// Calendar interactivo con estado controlado
-export const Interactive = {
-  render: () => {
-    const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
-    const [availableDates] = useState([
-      new Date(2024, 2, 10),
-      new Date(2024, 2, 11),
-      new Date(2024, 2, 12),
-      new Date(2024, 2, 15),
-      new Date(2024, 2, 16),
-      new Date(2024, 2, 18),
-      new Date(2024, 2, 19),
-      new Date(2024, 2, 22),
-      new Date(2024, 2, 25),
-      new Date(2024, 2, 26),
-    ]);
-
-    return (
-      <div>
-        <Calendar
-          points={availableDates}
-          onUpdate={(date) => {
-            setSelectedDate(date);
-            console.log('Fecha seleccionada:', date);
-          }}
-        />
-        <div style={{ marginTop: '20px', padding: '16px', backgroundColor: '#f0f9ff', borderRadius: '8px' }}>
-          <h4 style={{ margin: '0 0 8px 0', color: '#1e40af' }}>Fecha Seleccionada:</h4>
-          <p style={{ margin: 0, fontFamily: 'monospace' }}>
-            {selectedDate
-              ? selectedDate.toLocaleDateString('es-ES', {
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })
-              : 'Ninguna'}
-          </p>
-        </div>
-      </div>
-    );
-  },
-};
-
-// Casos de uso del sistema médico
 export const MedicalSystem = {
   render: () => {
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
 
-    // Fechas con turnos disponibles
     const turnosDisponibles = [
-      new Date(2024, 2, 11), // lunes
-      new Date(2024, 2, 12), // martes
-      new Date(2024, 2, 13), // miércoles
-      new Date(2024, 2, 15), // viernes
-      new Date(2024, 2, 18), // lunes
-      new Date(2024, 2, 19), // martes
-      new Date(2024, 2, 20), // miércoles
-      new Date(2024, 2, 22), // viernes
-      new Date(2024, 2, 25), // lunes
-      new Date(2024, 2, 26), // martes
-      new Date(2024, 2, 27), // miércoles
-      new Date(2024, 2, 29), // viernes
+      new Date(2024, 2, 11),
+      new Date(2024, 2, 12),
+      new Date(2024, 2, 13),
+      new Date(2024, 2, 15),
+      new Date(2024, 2, 18),
+      new Date(2024, 2, 19),
+      new Date(2024, 2, 20),
+      new Date(2024, 2, 22),
+      new Date(2024, 2, 25),
+      new Date(2024, 2, 26),
+      new Date(2024, 2, 27),
+      new Date(2024, 2, 29),
     ];
 
     const formatDate = (date: Date) =>
@@ -221,36 +140,5 @@ export const MedicalSystem = {
         </div>
       </div>
     );
-  },
-};
-
-// Calendar con fechas del mes actual
-export const CurrentMonth: Story = {
-  args: {
-    points: [
-      new Date(), // hoy
-      new Date(Date.now() + 24 * 60 * 60 * 1000), // mañana
-      new Date(Date.now() + 2 * 24 * 60 * 60 * 1000), // pasado mañana
-      new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // próxima semana
-    ],
-  },
-};
-
-// Calendar sin fechas marcadas (mes vacío)
-export const EmptyMonth: Story = {
-  args: {
-    points: [],
-  },
-};
-
-// Demostración con fechas de diferentes meses
-export const MultiplemonthPoints: Story = {
-  args: {
-    points: [
-      new Date(2024, 0, 15), // enero
-      new Date(2024, 1, 14), // febrero
-      new Date(2024, 2, 15), // marzo
-      new Date(2024, 3, 15), // abril
-    ],
   },
 };

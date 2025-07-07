@@ -31,57 +31,6 @@ export const Basic: Story = {
   },
 };
 
-export const WithDashboardTitle: Story = {
-  args: {
-    title: 'Dashboard Principal',
-  },
-};
-
-export const WithPatientsTitle: Story = {
-  args: {
-    title: 'Gestión de Pacientes',
-  },
-};
-
-export const WithAppointmentsTitle: Story = {
-  args: {
-    title: 'Agenda de Turnos',
-  },
-};
-
-export const WithConfigurationTitle: Story = {
-  args: {
-    title: 'Configuraciones del Sistema',
-  },
-};
-
-export const WithLongTitle: Story = {
-  args: {
-    title: 'Sistema de Gestión Integral de Consultorios Médicos - INTEGRITY',
-  },
-};
-
-export const WithReactElement: Story = {
-  args: {
-    title: (
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-        <span
-          style={{
-            padding: '0.25rem 0.5rem',
-            backgroundColor: '#e3f2fd',
-            borderRadius: '3px',
-            fontSize: '12px',
-            fontWeight: 'bold',
-          }}
-        >
-          NUEVO
-        </span>
-        Dashboard Médico Avanzado
-      </div>
-    ),
-  },
-};
-
 export const InMedicalLayout: Story = {
   render: (args) => (
     <div
@@ -168,37 +117,6 @@ export const InMedicalLayout: Story = {
   args: {
     title: 'Dashboard Médico INTEGRITY',
   },
-};
-
-export const DifferentSections: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <div>
-        <h4 style={{ margin: '0 0 0.5rem 0' }}>Dashboard Principal</h4>
-        <TopBar title="Dashboard Médico" />
-      </div>
-
-      <div>
-        <h4 style={{ margin: '0 0 0.5rem 0' }}>Gestión de Pacientes</h4>
-        <TopBar title="Pacientes" />
-      </div>
-
-      <div>
-        <h4 style={{ margin: '0 0 0.5rem 0' }}>Agenda de Turnos</h4>
-        <TopBar title="Agenda del Día" />
-      </div>
-
-      <div>
-        <h4 style={{ margin: '0 0 0.5rem 0' }}>Configuraciones</h4>
-        <TopBar title="Configuraciones del Sistema" />
-      </div>
-
-      <div>
-        <h4 style={{ margin: '0 0 0.5rem 0' }}>Reportes</h4>
-        <TopBar title="Reportes y Estadísticas" />
-      </div>
-    </div>
-  ),
 };
 
 export const WithCustomContent: Story = {
@@ -306,19 +224,6 @@ export const ResponsiveDemo: Story = {
           <TopBar title="Dashboard - Tablet" />
         </div>
       </div>
-
-      <div>
-        <h4>Mobile (375px)</h4>
-        <div style={{ width: '375px', border: '1px solid #ccc' }}>
-          <TopBar title="Dashboard" />
-        </div>
-      </div>
     </div>
   ),
-};
-
-export const ForTesting: Story = {
-  args: {
-    title: 'Test TopBar',
-  },
 };

@@ -13,3 +13,18 @@
   background-color: #e4f9d7;
   border: 1px solid #62b72d;
 }
+
+.error {
+  background-color: #f9d7d7;
+  border: 1px solid #ff0000;
+}
+
+.warning {
+  background-color: #f9f9d7;
+  border: 1px solid #ffee00;
+}
+
+.info {
+  background-color: #f9f9f9;
+  border: 1px solid #cccccc;
+}

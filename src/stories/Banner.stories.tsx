@@ -31,7 +31,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Banner de éxito
 export const Success: Story = {
   args: {
     type: 'success',
@@ -39,7 +38,6 @@ export const Success: Story = {
   },
 };
 
-// Banner de error
 export const Error: Story = {
   args: {
     type: 'error',
@@ -47,7 +45,6 @@ export const Error: Story = {
   },
 };
 
-// Banner de advertencia
 export const Warning: Story = {
   args: {
     type: 'warning',
@@ -55,7 +52,6 @@ export const Warning: Story = {
   },
 };
 
-// Banner de información
 export const Info: Story = {
   args: {
     type: 'info',
@@ -63,7 +59,6 @@ export const Info: Story = {
   },
 };
 
-// Banner con mensaje corto
 export const ShortMessage: Story = {
   args: {
     type: 'success',
@@ -71,7 +66,6 @@ export const ShortMessage: Story = {
   },
 };
 
-// Banner con mensaje largo
 export const LongMessage: Story = {
   args: {
     type: 'error',
@@ -80,7 +74,6 @@ export const LongMessage: Story = {
   },
 };
 
-// Banner con contenido HTML
 export const WithHtmlContent: Story = {
   args: {
     type: 'info',
@@ -96,7 +89,6 @@ export const WithHtmlContent: Story = {
   },
 };
 
-// Banner con lista
 export const WithList: Story = {
   args: {
     type: 'warning',
@@ -113,19 +105,17 @@ export const WithList: Story = {
   },
 };
 
-// Todos los tipos juntos para comparación
 export const AllTypes = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <Banner type="success">✅ Éxito: La operación se completó correctamente.</Banner>
-      <Banner type="error">❌ Error: Algo salió mal durante el proceso.</Banner>
-      <Banner type="warning">⚠️ Advertencia: Revise la información antes de continuar.</Banner>
-      <Banner type="info">ℹ️ Información: Datos importantes del sistema.</Banner>
+      <Banner type="success">Éxito: La operación se completó correctamente.</Banner>
+      <Banner type="error">Error: Algo salió mal durante el proceso.</Banner>
+      <Banner type="warning">Advertencia: Revise la información antes de continuar.</Banner>
+      <Banner type="info">Información: Datos importantes del sistema.</Banner>
     </div>
   ),
 };
 
-// Casos de uso del sistema médico
 export const MedicalSystemExamples = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -137,33 +127,6 @@ export const MedicalSystemExamples = {
   ),
 };
 
-// Banner con acciones
-export const WithActions: Story = {
-  args: {
-    type: 'warning',
-    children: (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-        <span>Su sesión expirará en 5 minutos.</span>
-        <button
-          style={{
-            background: 'transparent',
-            border: '1px solid currentColor',
-            borderRadius: '4px',
-            padding: '4px 8px',
-            fontSize: '0.75rem',
-            color: 'inherit',
-            cursor: 'pointer',
-            marginLeft: '16px',
-          }}
-        >
-          Extender
-        </button>
-      </div>
-    ),
-  },
-};
-
-// Banner minimalista
 export const Minimal: Story = {
   args: {
     type: 'info',
@@ -171,7 +134,6 @@ export const Minimal: Story = {
   },
 };
 
-// Banner con código de error
 export const WithErrorCode: Story = {
   args: {
     type: 'error',
@@ -184,7 +146,6 @@ export const WithErrorCode: Story = {
   },
 };
 
-// Banner de validación de formulario
 export const FormValidation: Story = {
   args: {
     type: 'error',

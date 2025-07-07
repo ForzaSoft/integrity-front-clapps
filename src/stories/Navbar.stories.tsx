@@ -1,7 +1,6 @@
 import Navbar from '@/components/Navbar';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-// Configuración del meta
 const meta: Meta<typeof Navbar> = {
   title: 'Components/Navbar',
   component: Navbar,
@@ -20,7 +19,6 @@ const meta: Meta<typeof Navbar> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Historia básica
 export const Basic: Story = {
   render: () => (
     <div style={{ height: '100vh', width: '80px' }}>
@@ -29,7 +27,6 @@ export const Basic: Story = {
   ),
 };
 
-// Historia con contexto de aplicación médica
 export const InMedicalApp: Story = {
   render: () => (
     <div
@@ -68,13 +65,9 @@ export const InMedicalApp: Story = {
   ),
 };
 
-// Historia mostrando el navbar con diferentes alturas
 export const DifferentHeights: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'start' }}>
-      <div style={{ height: '300px', width: '80px' }}>
-        <Navbar />
-      </div>
       <div style={{ height: '500px', width: '80px' }}>
         <Navbar />
       </div>
@@ -85,7 +78,6 @@ export const DifferentHeights: Story = {
   ),
 };
 
-// Historia con simulación de estados activos
 export const WithActiveStates: Story = {
   render: () => (
     <div style={{ height: '100vh', width: '80px' }}>
@@ -117,7 +109,6 @@ export const WithActiveStates: Story = {
   ),
 };
 
-// Historia mostrando el navbar en un layout completo
 export const InFullLayout: Story = {
   render: () => (
     <div
@@ -213,101 +204,6 @@ export const InFullLayout: Story = {
             </div>
           </div>
         </main>
-      </div>
-    </div>
-  ),
-};
-
-// Historia simple para testing
-export const ForTesting: Story = {
-  render: () => (
-    <div
-      style={{
-        height: '400px',
-        width: '80px',
-        border: '2px dashed #ccc',
-        position: 'relative',
-      }}
-    >
-      <Navbar />
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '-30px',
-          left: '0',
-          fontSize: '12px',
-          color: '#666',
-        }}
-      >
-        80px × 400px
-      </div>
-    </div>
-  ),
-};
-
-// Historia mostrando múltiples navbars (comparación)
-export const Comparison: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: '2rem', alignItems: 'start' }}>
-      <div>
-        <h4 style={{ marginBottom: '1rem', textAlign: 'center' }}>Navbar Normal</h4>
-        <div style={{ height: '500px', width: '80px' }}>
-          <Navbar />
-        </div>
-      </div>
-      <div>
-        <h4 style={{ marginBottom: '1rem', textAlign: 'center' }}>Con Overlay</h4>
-        <div style={{ height: '500px', width: '80px', position: 'relative' }}>
-          <Navbar />
-          <div
-            style={{
-              position: 'absolute',
-              top: '0',
-              left: '0',
-              right: '0',
-              bottom: '0',
-              backgroundColor: 'rgba(0,0,0,0.1)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontSize: '12px',
-            }}
-          >
-            Overlay
-          </div>
-        </div>
-      </div>
-      <div>
-        <h4 style={{ marginBottom: '1rem', textAlign: 'center' }}>Con Indicadores</h4>
-        <div style={{ height: '500px', width: '80px', position: 'relative' }}>
-          <Navbar />
-          {/* Simulando notificaciones */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '200px',
-              right: '10px',
-              width: '12px',
-              height: '12px',
-              backgroundColor: '#ff4444',
-              borderRadius: '50%',
-              border: '2px solid white',
-            }}
-          ></div>
-          <div
-            style={{
-              position: 'absolute',
-              top: '260px',
-              right: '10px',
-              width: '12px',
-              height: '12px',
-              backgroundColor: '#ff4444',
-              borderRadius: '50%',
-              border: '2px solid white',
-            }}
-          ></div>
-        </div>
       </div>
     </div>
   ),

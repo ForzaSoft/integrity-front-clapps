@@ -4,8 +4,8 @@ import Label from '@/components/Label';
 import Panel, { PanelRef } from '@/components/Panel';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { useRef } from 'react';
+import { createPortal } from 'react-dom';
 
-// Configuración del meta
 const meta: Meta<typeof Panel> = {
   title: 'Components/Panel',
   component: Panel,
@@ -24,18 +24,12 @@ const meta: Meta<typeof Panel> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Historia básica
 export const Basic: Story = {
   render: () => {
     const panelRef = useRef<PanelRef>(null);
 
-    return (
-      <div style={{ padding: '2rem', height: '100vh', backgroundColor: '#f5f5f5' }}>
-        <h1>Panel Básico</h1>
-        <Button onClick={() => panelRef.current?.open()} variant="primary">
-          Abrir Panel
-        </Button>
-
+    const panelContent = (
+      <div style={{ position: 'relative', zIndex: 10000 }}>
         <Panel
           ref={panelRef}
           header={
@@ -53,21 +47,25 @@ export const Basic: Story = {
         </Panel>
       </div>
     );
+
+    return (
+      <div style={{ padding: '2rem', height: '100vh', backgroundColor: '#f5f5f5' }}>
+        <h1>Panel Básico</h1>
+        <Button onClick={() => panelRef.current?.open()} variant="primary">
+          Abrir Panel
+        </Button>
+        {typeof document !== 'undefined' && createPortal(panelContent, document.body)}
+      </div>
+    );
   },
 };
 
-// Historia con footer
 export const WithFooter: Story = {
   render: () => {
     const panelRef = useRef<PanelRef>(null);
 
-    return (
-      <div style={{ padding: '2rem', height: '100vh', backgroundColor: '#f5f5f5' }}>
-        <h1>Panel con Footer</h1>
-        <Button onClick={() => panelRef.current?.open()} variant="primary">
-          Abrir Panel con Footer
-        </Button>
-
+    const panelContent = (
+      <div style={{ position: 'relative', zIndex: 10000 }}>
         <Panel
           ref={panelRef}
           header={
@@ -102,21 +100,25 @@ export const WithFooter: Story = {
         </Panel>
       </div>
     );
+
+    return (
+      <div style={{ padding: '2rem', height: '100vh', backgroundColor: '#f5f5f5' }}>
+        <h1>Panel con Footer</h1>
+        <Button onClick={() => panelRef.current?.open()} variant="primary">
+          Abrir Panel con Footer
+        </Button>
+        {typeof document !== 'undefined' && createPortal(panelContent, document.body)}
+      </div>
+    );
   },
 };
 
-// Historia con contenido médico
 export const MedicalForm: Story = {
   render: () => {
     const panelRef = useRef<PanelRef>(null);
 
-    return (
-      <div style={{ padding: '2rem', height: '100vh', backgroundColor: '#f5f5f5' }}>
-        <h1>Sistema Médico INTEGRITY</h1>
-        <Button onClick={() => panelRef.current?.open()} variant="primary">
-          Nuevo Paciente
-        </Button>
-
+    const panelContent = (
+      <div style={{ position: 'relative', zIndex: 10000 }}>
         <Panel
           ref={panelRef}
           header={
@@ -183,21 +185,25 @@ export const MedicalForm: Story = {
         </Panel>
       </div>
     );
+
+    return (
+      <div style={{ padding: '2rem', height: '100vh', backgroundColor: '#f5f5f5' }}>
+        <h1>Sistema Médico INTEGRITY</h1>
+        <Button onClick={() => panelRef.current?.open()} variant="primary">
+          Nuevo Paciente
+        </Button>
+        {typeof document !== 'undefined' && createPortal(panelContent, document.body)}
+      </div>
+    );
   },
 };
 
-// Historia con contenido largo (scroll)
 export const WithLongContent: Story = {
   render: () => {
     const panelRef = useRef<PanelRef>(null);
 
-    return (
-      <div style={{ padding: '2rem', height: '100vh', backgroundColor: '#f5f5f5' }}>
-        <h1>Panel con Scroll</h1>
-        <Button onClick={() => panelRef.current?.open()} variant="primary">
-          Abrir Panel con Contenido Largo
-        </Button>
-
+    const panelContent = (
+      <div style={{ position: 'relative', zIndex: 10000 }}>
         <Panel
           ref={panelRef}
           header={
@@ -242,20 +248,25 @@ export const WithLongContent: Story = {
         </Panel>
       </div>
     );
+
+    return (
+      <div style={{ padding: '2rem', height: '100vh', backgroundColor: '#f5f5f5' }}>
+        <h1>Panel con Scroll</h1>
+        <Button onClick={() => panelRef.current?.open()} variant="primary">
+          Abrir Panel con Contenido Largo
+        </Button>
+        {typeof document !== 'undefined' && createPortal(panelContent, document.body)}
+      </div>
+    );
   },
 };
 
-// Historia simple para testing
 export const ForTesting: Story = {
   render: () => {
     const panelRef = useRef<PanelRef>(null);
 
-    return (
-      <div style={{ padding: '1rem', height: '100vh', backgroundColor: '#f0f0f0' }}>
-        <Button onClick={() => panelRef.current?.open()} variant="primary" size="sm">
-          Abrir Panel
-        </Button>
-
+    const panelContent = (
+      <div style={{ position: 'relative', zIndex: 10000 }}>
         <Panel
           ref={panelRef}
           header={
@@ -273,6 +284,15 @@ export const ForTesting: Story = {
             <p>Posición: Derecha</p>
           </div>
         </Panel>
+      </div>
+    );
+
+    return (
+      <div style={{ padding: '1rem', height: '100vh', backgroundColor: '#f0f0f0' }}>
+        <Button onClick={() => panelRef.current?.open()} variant="primary" size="sm">
+          Abrir Panel
+        </Button>
+        {typeof document !== 'undefined' && createPortal(panelContent, document.body)}
       </div>
     );
   },

@@ -43,7 +43,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Card básica con título
 export const Basic: Story = {
   args: {
     title: 'Card Básica',
@@ -56,7 +55,6 @@ export const Basic: Story = {
   },
 };
 
-// Card sin título
 export const WithoutTitle: Story = {
   args: {
     children: (
@@ -68,35 +66,32 @@ export const WithoutTitle: Story = {
   },
 };
 
-// Card con variante flat
 export const Flat: Story = {
   args: {
     title: 'Card Flat',
     variant: 'flat',
     children: (
       <div>
-        <p>Esta card usa la variante 'flat' que no tiene fondo gris.</p>
+        <p>Esta card usa la variante &apos;flat&apos; que no tiene fondo gris.</p>
         <p>Solo se ve el header con gradiente.</p>
       </div>
     ),
   },
 };
 
-// Card con variante filled (default)
 export const Filled: Story = {
   args: {
     title: 'Card Filled',
     variant: 'filled',
     children: (
       <div>
-        <p>Esta card usa la variante 'filled' con fondo gris.</p>
+        <p>Esta card usa la variante &apos;filled&apos; con fondo gris.</p>
         <p>Es la variante por defecto.</p>
       </div>
     ),
   },
 };
 
-// Card con ancho personalizado
 export const CustomWidth: Story = {
   args: {
     title: 'Card Ancha',
@@ -110,7 +105,6 @@ export const CustomWidth: Story = {
   },
 };
 
-// Card con padding personalizado
 export const CustomPadding: Story = {
   args: {
     title: 'Card con Padding Personalizado',
@@ -125,7 +119,6 @@ export const CustomPadding: Story = {
   },
 };
 
-// Card con margen superior
 export const WithMarginTop: Story = {
   args: {
     title: 'Card con Margen Superior',
@@ -139,7 +132,6 @@ export const WithMarginTop: Story = {
   },
 };
 
-// Card con contenido complejo
 export const WithComplexContent: Story = {
   args: {
     title: 'Información del Usuario',
@@ -208,7 +200,6 @@ export const WithComplexContent: Story = {
   },
 };
 
-// Card pequeña
 export const Small: Story = {
   args: {
     title: 'Card Pequeña',
@@ -224,7 +215,6 @@ export const Small: Story = {
   },
 };
 
-// Card grande
 export const Large: Story = {
   args: {
     title: 'Dashboard Completo',
@@ -250,7 +240,6 @@ export const Large: Story = {
   },
 };
 
-// Card sin padding
 export const NoPadding: Story = {
   args: {
     title: 'Card Sin Padding',

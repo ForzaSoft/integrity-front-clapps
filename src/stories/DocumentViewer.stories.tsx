@@ -194,12 +194,6 @@ const sampleDocuments: DocumentItem[] = [
     status: 'completed',
     url: DOCUMENT_URLS.consentimiento,
   },
-  {
-    id: 4,
-    name: 'Resultados de laboratorio',
-    status: 'completed',
-    url: DOCUMENT_URLS.resultados,
-  },
 ];
 
 export const Default: Story = {
@@ -238,20 +232,6 @@ export const PillSelectionDemo: Story = {
         name: 'Consentimiento informado',
         status: 'completed',
         url: DOCUMENT_URLS.consentimiento,
-        selected: false,
-      },
-      {
-        id: 4,
-        name: 'Resultados de laboratorio',
-        status: 'completed',
-        url: DOCUMENT_URLS.resultados,
-        selected: false,
-      },
-      {
-        id: 5,
-        name: 'Historial clínico',
-        status: 'completed',
-        url: DOCUMENT_URLS.historial,
         selected: false,
       },
     ]);

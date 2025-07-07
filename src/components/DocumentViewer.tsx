@@ -1,9 +1,9 @@
-import AgregarIcon from '@/icons/AgregarIcon';
 import CheckCircleIcon from '@/icons/CheckCircleIcon';
 import CloseBoxIcon from '@/icons/CloseBoxIcon';
 import DocumentBoxIcon from '@/icons/DocumentBoxIcon';
 import InformacionIcon from '@/icons/InformacionIcon';
 import RefreshBoxIcon from '@/icons/RefreshBoxIcon';
+import SubirIcon from '@/icons/SubirIcon';
 import clsx from 'clsx';
 import Button from './Button';
 import styles from './DocumentViewer.module.css';
@@ -45,7 +45,7 @@ const DocumentHeader = ({ title, onUpload }: { title: string; onUpload?: () => v
       <CheckCircleIcon size={20} />
       <h2 className={styles.headerTitle}>{title}</h2>
     </div>
-    <Button variant="outline" size="sm" icon={AgregarIcon} onClick={onUpload}>
+    <Button variant="outline" size="sm" shape="round" icon={SubirIcon} onClick={onUpload}>
       Subir
     </Button>
   </div>
@@ -114,21 +114,22 @@ const DocumentListItem = ({
       <div className={styles.documentItemActions}>
         <Button
           size="sm"
-          variant="flat"
+          variant="outline"
           icon={DocumentBoxIcon}
           onClick={() => onView?.(document)}
           title="Ver documento"
         />
         <Button
           size="sm"
-          variant="flat"
+          variant="outline"
           icon={RefreshBoxIcon}
           onClick={() => onRefresh?.(document)}
           title="Refrescar documento"
         />
         <Button
           size="sm"
-          variant="flat"
+          variant="secondary"
+          color="negative"
           icon={CloseBoxIcon}
           onClick={() => onDelete?.(document)}
           title="Eliminar documento"

@@ -1,6 +1,6 @@
 import { IconProps } from './type';
 
-const DocumentBoxIcon = ({ color = '#4496ff', size = 18 }: IconProps) => (
+const DocumentBoxIcon = ({ color = '#898989', size = 18 }: IconProps) => (
   <svg height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="1" y="1" width="22" height="22" rx="4" fill="#f8f9fa" stroke="#e9ecef" strokeWidth="0.5" />
     <path

@@ -7,7 +7,6 @@ import EditarIcon from '@/icons/EditarIcon';
 import EliminarIcon from '@/icons/EliminarIcon';
 import VisualizarIcon from '@/icons/VisualizarIcon';
 
-// Datos de ejemplo
 interface Usuario {
   id: number;
   nombre: string;
@@ -75,7 +74,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Tabla básica con datos simples
 export const Basic: Story = {
   args: {
     headers: [
@@ -88,7 +86,6 @@ export const Basic: Story = {
   },
 };
 
-// Tabla con diferentes alineaciones
 export const WithAlignment: Story = {
   args: {
     headers: [
@@ -102,7 +99,6 @@ export const WithAlignment: Story = {
   },
 };
 
-// Tabla con renderers personalizados
 export const WithCustomRenderers: Story = {
   args: {
     headers: [
@@ -143,7 +139,6 @@ export const WithCustomRenderers: Story = {
   },
 };
 
-// Tabla con filas resaltadas
 export const WithHighlightedRows: Story = {
   args: {
     headers: [
@@ -157,7 +152,6 @@ export const WithHighlightedRows: Story = {
   },
 };
 
-// Tabla con click en filas
 export const WithRowClick: Story = {
   args: {
     headers: [
@@ -171,7 +165,6 @@ export const WithRowClick: Story = {
   },
 };
 
-// Tabla vacía
 export const Empty: Story = {
   args: {
     headers: [
@@ -184,7 +177,6 @@ export const Empty: Story = {
   },
 };
 
-// Tabla con una sola fila
 export const SingleRow: Story = {
   args: {
     headers: [
@@ -197,7 +189,6 @@ export const SingleRow: Story = {
   },
 };
 
-// Tabla con children (contenido manual)
 export const WithChildren: Story = {
   args: {
     headers: [
@@ -235,7 +226,6 @@ export const WithChildren: Story = {
   },
 };
 
-// Tabla compleja con múltiples características
 export const Complex: Story = {
   args: {
     headers: [

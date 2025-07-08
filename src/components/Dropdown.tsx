@@ -111,7 +111,6 @@ const DropdownComponent = <T,>(props: DropdownProps<T>) => {
 
   React.useEffect(() => {
     if (selected !== undefined) props.onSelected?.(selected.value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 
   const toggleDropdown = () => setIsOpen(!isOpen);

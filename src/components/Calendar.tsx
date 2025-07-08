@@ -54,7 +54,6 @@ const Calendar = ({ onUpdate, points = [], ...rest }: CalendarProps) => {
   const [selected, setSelected] = React.useState<Date>(new Date());
   const [lastSelected, setLastSelected] = React.useState<Date>();
 
-  // filtrar los points por mes seleccionado
   points = points.filter((point) => point.getMonth() === active.getMonth());
 
   React.useEffect(() => {
@@ -63,7 +62,6 @@ const Calendar = ({ onUpdate, points = [], ...rest }: CalendarProps) => {
 
     setSelYear(selected?.getFullYear());
     setSelMonth(selected?.getMonth());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
@@ -74,8 +72,6 @@ const Calendar = ({ onUpdate, points = [], ...rest }: CalendarProps) => {
       filteredDate.setHours(0, 0, 0, 0);
       onUpdate(selected);
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 
   React.useEffect(() => {

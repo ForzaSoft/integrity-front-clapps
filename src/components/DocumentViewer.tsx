@@ -52,18 +52,9 @@ const DocumentHeader = ({ title, onUpload }: { title: string; onUpload?: () => v
 );
 
 const PDFViewer = ({ url }: { url?: string }) => {
-  // Función para agregar parámetros de control a la URL del PDF
   const getPDFUrlWithControls = (pdfUrl: string) => {
-    // Agregar parámetros para habilitar controles nativos del PDF
     const separator = pdfUrl.includes('#') ? '&' : '#';
 
-    // Parámetros para una experiencia completa del visor PDF:
-    // - toolbar=1: Muestra la barra de herramientas con zoom, navegación, etc.
-    // - navpanes=1: Habilita el panel de navegación lateral (miniaturas, marcadores)
-    // - scrollbar=1: Muestra barras de desplazamiento
-    // - page=1: Inicia en la primera página
-    // - zoom=FitH: Ajusta el zoom al ancho de la página (FitH = Fit Horizontal)
-    // - view=Fit: Vista que se ajusta al contenedor
     const controls = ['toolbar=1', 'navpanes=1', 'scrollbar=1', 'page=1', 'zoom=FitH', 'view=Fit'].join('&');
 
     return `${pdfUrl}${separator}${controls}`;

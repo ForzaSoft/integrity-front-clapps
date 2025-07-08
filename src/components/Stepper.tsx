@@ -25,21 +25,31 @@ export interface StepperProps extends ComponentPropsWithoutRef<'div'> {
 const Stepper = ({ steps, currentStep, onStepClick, className, ...rest }: StepperProps) => {
   return (
     <div className={clsx(styles.stepper, className)} {...rest}>
-      {steps.map((step, index) => {
-        const isCompleted = index < currentStep;
-        const isActive = index === currentStep;
+      <div className={styles.stepsContainer}>
+        {steps.map((step, index) => {
+          const isCompleted = index < currentStep;
+          const isActive = index === currentStep;
 
-        return (
-          <div
-            key={step.id}
-            className={clsx(styles.step, isCompleted && styles.completed, isActive && styles.active)}
-            onClick={() => onStepClick?.(index)}
-          >
-            <div className={styles.stepCircle}>{index + 1}</div>
-            <span className={styles.stepLabel}>{step.label}</span>
-          </div>
-        );
-      })}
+          return (
+            <div
+              key={step.id}
+              className={clsx(styles.step, {
+                [styles.completed]: isCompleted,
+                [styles.active]: isActive,
+              })}
+              onClick={() => onStepClick?.(index)}
+            >
+              <div className={styles.stepCircle}>{index + 1}</div>
+              <span className={styles.stepLabel}>{step.label}</span>
+            </div>
+          );
+        })}
+      </div>
+      <div className={styles.linesContainer}>
+        {steps.slice(0, -1).map((_, index) => (
+          <div key={index} className={styles.line} />
+        ))}
+      </div>
     </div>
   );
 };

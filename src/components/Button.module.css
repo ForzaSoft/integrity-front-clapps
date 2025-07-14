@@ -25,7 +25,6 @@
 
   &:disabled {
     cursor: not-allowed;
-    background-color: #d4d4d4;
     color: #bcbcbc;
     border: solid 1px #bcbcbc;
   }
@@ -35,7 +34,22 @@
   }
 }
 
-/* Variants - Base colors */
+.filled:disabled {
+  background-color: #d4d4d4;
+}
+
+.outline:disabled {
+  background-color: transparent;
+}
+
+.flat:disabled {
+  background-color: transparent;
+}
+
+.flat-inverted:disabled {
+  background-color: transparent;
+}
+
 .primary {
   --variant-color: var(--primary-color);
 }
@@ -56,7 +70,6 @@
   --variant-color: var(--info-color);
 }
 
-/* Appearances */
 .filled {
   background-color: var(--variant-color);
   color: #ffffff;
@@ -85,7 +98,6 @@
   border: solid 1px transparent;
 }
 
-/* Custom color support */
 .customColor.filled {
   background-color: var(--custom-color);
   border-color: var(--custom-color);
@@ -110,7 +122,6 @@
   color: #ffffff;
 }
 
-/* Sizes */
 .sm {
   font-size: 0.875rem;
   padding: 0 0.75rem;
@@ -158,7 +169,6 @@
   }
 }
 
-/* Shapes */
 .square {
   &.sm {
     border-radius: 5px;

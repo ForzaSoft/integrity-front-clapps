@@ -8,17 +8,8 @@ export interface Step {
 }
 
 export interface StepperProps extends ComponentPropsWithoutRef<'div'> {
-  /**
-   * Array de pasos a mostrar
-   */
   steps: Step[];
-  /**
-   * Paso actual (0-based)
-   */
   currentStep: number;
-  /**
-   * Callback cuando se hace clic en un paso
-   */
   onStepClick?: (stepIndex: number) => void;
 }
 

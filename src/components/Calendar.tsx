@@ -1,13 +1,15 @@
 import Dropdown, { DropdownOption } from '@/components/Dropdown';
 import React from 'react';
-import { DateLib, DayPicker, formatMonthDropdown } from 'react-day-picker';
+import { DateLib, DateRange, DayPicker, formatMonthDropdown } from 'react-day-picker';
 import { es } from 'react-day-picker/locale';
 import Button from './Button';
 import styles from './Calendar.module.css';
 
 type CalendarProps = {
-  onUpdate: React.Dispatch<React.SetStateAction<Date | undefined>>;
-  points: Date[];
+  onUpdate: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
+  points?: Date[];
+  from?: Date;
+  to?: Date;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const customWeekdayNames: string[] = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
@@ -39,10 +41,7 @@ const getMonthsList = (): DropdownOption<number>[] => {
   });
 };
 
-const isSameDay = (d1: Date, d2: Date) =>
-  d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
-
-const Calendar = ({ onUpdate, points = [], ...rest }: CalendarProps) => {
+const Calendar = ({ onUpdate, points = [], from, to, ...rest }: CalendarProps) => {
   const [years, setYears] = React.useState<DropdownOption<number>[]>();
   const [selYear, setSelYear] = React.useState<number>();
 
@@ -51,8 +50,8 @@ const Calendar = ({ onUpdate, points = [], ...rest }: CalendarProps) => {
 
   const [active, setActive] = React.useState<Date>(new Date());
 
-  const [selected, setSelected] = React.useState<Date>(new Date());
-  const [lastSelected, setLastSelected] = React.useState<Date>();
+  const [selected, setSelected] = React.useState<DateRange | undefined>();
+  const [lastSelected, setLastSelected] = React.useState<DateRange | undefined>();
 
   points = points.filter((point) => point.getMonth() === active.getMonth());
 
@@ -60,24 +59,27 @@ const Calendar = ({ onUpdate, points = [], ...rest }: CalendarProps) => {
     setYears(getYearList());
     setMonths(getMonthsList());
 
-    setSelYear(selected?.getFullYear());
-    setSelMonth(selected?.getMonth());
+    setSelYear(selected?.from?.getFullYear() || new Date().getFullYear());
+    setSelMonth(selected?.from?.getMonth() || new Date().getMonth());
   }, []);
 
   React.useEffect(() => {
-    if (lastSelected === undefined || !isSameDay(lastSelected, selected)) {
+    if (lastSelected === undefined || lastSelected.from !== selected?.from || lastSelected.to !== selected?.to) {
       setLastSelected(selected);
-
-      const filteredDate = selected;
-      filteredDate.setHours(0, 0, 0, 0);
       onUpdate(selected);
     }
-  }, [selected]);
+  }, [selected, lastSelected, onUpdate]);
 
   React.useEffect(() => {
     setSelYear(active?.getFullYear());
     setSelMonth(active?.getMonth());
   }, [active]);
+
+  const isDateDisabled = (date: Date): boolean => {
+    if (from && date < from) return true;
+    if (to && date > to) return true;
+    return false;
+  };
 
   return (
     <div className={styles.container} {...rest}>
@@ -85,13 +87,14 @@ const Calendar = ({ onUpdate, points = [], ...rest }: CalendarProps) => {
         className={styles.dayPicker}
         locale={es}
         weekStartsOn={0}
-        mode="single"
+        mode="range"
         selected={selected}
         month={active}
+        disabled={isDateDisabled}
+        fromDate={from}
+        toDate={to}
         onSelect={(value) => {
-          if (value) {
-            setSelected(value);
-          }
+          setSelected(value);
         }}
         formatters={{
           formatWeekdayName: (weekday) => customWeekdayNames[weekday.getDay()] || '',
@@ -156,45 +159,63 @@ const Calendar = ({ onUpdate, points = [], ...rest }: CalendarProps) => {
           options={months}
           selected={selMonth}
           onSelected={(value) => {
-            setActive(new Date(selected.getFullYear(), value, 1));
+            setActive(new Date(selected?.from?.getFullYear() || new Date().getFullYear(), value, 1));
           }}
         />
         <div className={styles.navLabel}>Días</div>
         <div className={styles.buttonGroup}>
           <Button
             className={styles.yesterdayButton}
-            variant="outline"
+            appearance="outline"
             size="sm"
             onClick={() => {
-              const date = new Date(selected.getTime());
-              date.setDate(selected.getDate() - 1);
-              setSelected(date);
-              setActive(date);
+              const date = new Date();
+              date.setDate(date.getDate() - 1);
+              if (!isDateDisabled(date)) {
+                setSelected({ from: date, to: undefined });
+                setActive(date);
+              }
             }}
+            disabled={(() => {
+              const date = new Date();
+              date.setDate(date.getDate() - 1);
+              return isDateDisabled(date);
+            })()}
           >
             &lsaquo;
           </Button>
           <Button
             className={styles.todayButton}
-            variant="outline"
+            appearance="outline"
             size="sm"
             onClick={() => {
-              setSelected(new Date());
-              setActive(new Date());
+              const today = new Date();
+              if (!isDateDisabled(today)) {
+                setSelected({ from: today, to: undefined });
+                setActive(today);
+              }
             }}
+            disabled={isDateDisabled(new Date())}
           >
             hoy
           </Button>
           <Button
             className={styles.tomorrowButton}
-            variant="outline"
+            appearance="outline"
             size="sm"
             onClick={() => {
-              const date = new Date(selected.getTime());
-              date.setDate(selected.getDate() + 1);
-              setSelected(date);
-              setActive(date);
+              const date = new Date();
+              date.setDate(date.getDate() + 1);
+              if (!isDateDisabled(date)) {
+                setSelected({ from: date, to: undefined });
+                setActive(date);
+              }
             }}
+            disabled={(() => {
+              const date = new Date();
+              date.setDate(date.getDate() + 1);
+              return isDateDisabled(date);
+            })()}
           >
             &rsaquo;
           </Button>

@@ -1,4 +1,4 @@
-import DocumentViewer, { DocumentItem } from '@/components/DocumentViewer';
+import DocumentViewer, { DocumentSection, DocumentType } from '@/components/DocumentViewer';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { useState } from 'react';
 
@@ -11,7 +11,7 @@ const meta: Meta<typeof DocumentViewer> = {
     docs: {
       description: {
         component:
-          'Componente para visualizar documentos con lista de documentos y acciones. Utiliza documentos HTML simulados para evitar problemas de CORS en localhost.',
+          'Componente para visualizar documentos con 3 secciones fijas predefinidas: Orden médica, Autorización y Consentimiento informado. Cada sección puede estar en estado pendiente, subiendo o completada.',
       },
     },
   },
@@ -20,33 +20,41 @@ const meta: Meta<typeof DocumentViewer> = {
       control: 'text',
       description: 'Título del visualizador de documentos',
     },
-    documents: {
+    sections: {
       control: 'object',
-      description: 'Lista de documentos a mostrar',
+      description: 'Lista de las 3 secciones de documentos fijas',
     },
     currentDocumentUrl: {
       control: 'text',
       description: 'URL del documento actual a mostrar en el visualizador',
     },
+    isLoading: {
+      control: 'boolean',
+      description: 'Estado de carga del documento actual',
+    },
     onUpload: {
       action: 'upload',
-      description: 'Función ejecutada al hacer clic en el botón Subir',
+      description: 'Función ejecutada para subir un nuevo archivo PDF a una sección específica',
     },
-    onSelectDocument: {
+    onSelectSection: {
       action: 'select',
-      description: 'Función ejecutada al hacer clic en un documento para seleccionarlo',
+      description: 'Función ejecutada al hacer clic en una sección para seleccionarla',
     },
-    onViewDocument: {
+    onViewSection: {
       action: 'view',
       description: 'Función ejecutada al hacer clic en el botón Ver documento',
     },
-    onRefreshDocument: {
-      action: 'refresh',
-      description: 'Función ejecutada al hacer clic en el botón Refrescar documento',
-    },
-    onDeleteDocument: {
+    onDeleteSection: {
       action: 'delete',
       description: 'Función ejecutada al hacer clic en el botón Eliminar documento',
+    },
+    onSectionUpdated: {
+      action: 'sectionUpdated',
+      description: 'Función ejecutada cuando se actualiza una sección',
+    },
+    onCurrentDocumentChange: {
+      action: 'currentDocumentChange',
+      description: 'Función ejecutada cuando se actualiza el documento actual en el visor',
     },
     className: {
       control: 'text',
@@ -148,7 +156,7 @@ const createDocumentPreview = (title: string, content: string) => {
 };
 
 const DOCUMENT_URLS = {
-  ordenMedica: createDocumentPreview(
+  'orden-medica': createDocumentPreview(
     'ORDEN MÉDICA',
     'Documento de orden médica para procedimiento ambulatorio. Incluye indicaciones específicas del tratamiento a seguir.',
   ),
@@ -156,112 +164,117 @@ const DOCUMENT_URLS = {
     'AUTORIZACIÓN DE OBRA SOCIAL',
     'Documento de autorización emitido por la obra social para el tratamiento médico solicitado.',
   ),
-  consentimiento: createDocumentPreview(
+  'consentimiento-informado': createDocumentPreview(
     'CONSENTIMIENTO INFORMADO',
     'Documento donde el paciente otorga su consentimiento informado para el procedimiento médico a realizar.',
   ),
-  resultados: createDocumentPreview(
-    'RESULTADOS DE LABORATORIO',
-    'Informe completo de los resultados de los estudios de laboratorio realizados al paciente.',
-  ),
-  historial: createDocumentPreview(
-    'HISTORIAL CLÍNICO',
-    'Historial médico completo del paciente con antecedentes y evolución clínica.',
-  ),
-  receta: createDocumentPreview(
-    'RECETA MÉDICA',
-    'Prescripción médica con medicamentos indicados, dosis y duración del tratamiento.',
-  ),
 };
 
-const sampleDocuments: DocumentItem[] = [
+const createInitialSections = (): DocumentSection[] => [
   {
-    id: 1,
+    id: 'orden-medica',
     name: 'Orden médica',
     status: 'completed',
-    url: DOCUMENT_URLS.ordenMedica,
+    url: DOCUMENT_URLS['orden-medica'],
     selected: true,
   },
   {
-    id: 2,
+    id: 'autorizacion',
     name: 'Autorización',
-    status: 'completed',
-    url: DOCUMENT_URLS.autorizacion,
+    status: 'pending',
   },
   {
-    id: 3,
+    id: 'consentimiento-informado',
     name: 'Consentimiento informado',
-    status: 'completed',
-    url: DOCUMENT_URLS.consentimiento,
+    status: 'pending',
   },
 ];
 
 export const Default: Story = {
-  args: {
-    documents: sampleDocuments,
-    currentDocumentUrl: DOCUMENT_URLS.ordenMedica,
-  },
-};
-
-export const EmptyDocuments: Story = {
-  args: {
-    documents: [],
-    currentDocumentUrl: undefined,
-  },
-};
-
-export const PillSelectionDemo: Story = {
   render: () => {
-    const [documents, setDocuments] = useState<DocumentItem[]>([
-      {
-        id: 1,
-        name: 'Orden médica',
-        status: 'completed',
-        url: DOCUMENT_URLS.ordenMedica,
-        selected: true,
-      },
-      {
-        id: 2,
-        name: 'Autorización obra social',
-        status: 'completed',
-        url: DOCUMENT_URLS.autorizacion,
-        selected: false,
-      },
-      {
-        id: 3,
-        name: 'Consentimiento informado',
-        status: 'completed',
-        url: DOCUMENT_URLS.consentimiento,
-        selected: false,
-      },
-    ]);
+    const [sections, setSections] = useState<DocumentSection[]>(createInitialSections());
+    const [currentDocumentUrl, setCurrentDocumentUrl] = useState<string>(DOCUMENT_URLS['orden-medica']);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const [currentDocumentUrl, setCurrentDocumentUrl] = useState<string>(DOCUMENT_URLS.ordenMedica);
+    const handleUpload = async (file: File, sectionId: DocumentType): Promise<DocumentSection> => {
+      console.log(`📄 Subiendo archivo: ${file.name} a sección: ${sectionId}`);
 
-    const handleSelectDocument = (selectedDocument: DocumentItem) => {
-      console.log(`🔄 Seleccionando: ${selectedDocument.name}`);
+      const sectionToUpdate = sections.find((s) => s.id === sectionId);
+      if (!sectionToUpdate) throw new Error('Sección no encontrada');
 
-      const updatedDocuments = documents.map((doc) => ({
-        ...doc,
-        selected: doc.id === selectedDocument.id,
+      const uploadingSection: DocumentSection = {
+        ...sectionToUpdate,
+        status: 'uploading',
+      };
+
+      setSections((prev) => prev.map((section) => (section.id === sectionId ? uploadingSection : section)));
+
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      const completedSection: DocumentSection = {
+        ...uploadingSection,
+        status: 'completed',
+        url: DOCUMENT_URLS[sectionId],
+      };
+
+      setSections((prev) => prev.map((section) => (section.id === sectionId ? completedSection : section)));
+
+      return completedSection;
+    };
+
+    const handleSelectSection = (selectedSection: DocumentSection) => {
+      if (selectedSection.status === 'uploading') return;
+
+      console.log(`🔄 Seleccionando sección: ${selectedSection.name}`);
+
+      const updatedSections = sections.map((section) => ({
+        ...section,
+        selected: section.id === selectedSection.id,
       }));
 
-      setDocuments(updatedDocuments);
-      setCurrentDocumentUrl(selectedDocument.url);
+      setSections(updatedSections);
+
+      if (selectedSection.url) {
+        setCurrentDocumentUrl(selectedSection.url);
+        setIsLoading(true);
+        setTimeout(() => setIsLoading(false), 1000);
+      } else {
+        setCurrentDocumentUrl('');
+      }
+    };
+
+    const handleDeleteSection = (sectionToDelete: DocumentSection) => {
+      console.log(`🗑️ Eliminando documento de: ${sectionToDelete.name}`);
+
+      const resetSection: DocumentSection = {
+        ...sectionToDelete,
+        status: 'pending',
+        url: undefined,
+      };
+
+      setSections((prev) => prev.map((section) => (section.id === sectionToDelete.id ? resetSection : section)));
+
+      if (sectionToDelete.selected) {
+        setCurrentDocumentUrl('');
+      }
     };
 
     return (
       <DocumentViewer
         title="Documentos del turno"
-        documents={documents}
+        sections={sections}
         currentDocumentUrl={currentDocumentUrl}
-        onSelectDocument={handleSelectDocument}
-        onUpload={() => alert('Subir documento')}
-        onViewDocument={(doc) => alert(`Ver: ${doc.name}`)}
-        onRefreshDocument={(doc) => alert(`Refrescar: ${doc.name}`)}
-        onDeleteDocument={(doc) => alert(`Eliminar: ${doc.name}`)}
+        isLoading={isLoading}
+        onUpload={handleUpload}
+        onSelectSection={handleSelectSection}
+        onViewSection={(section) => alert(`Ver: ${section.name}`)}
+        onDeleteSection={handleDeleteSection}
+        onSectionUpdated={(section) => console.log(`📄 Sección actualizada: ${section.name}`)}
+        onCurrentDocumentChange={(url) => {
+          console.log('📄 Actualizando documento actual:', url);
+          setCurrentDocumentUrl(url);
+        }}
       />
     );
   },
-  args: {},
 };

@@ -3,31 +3,29 @@ import styled from 'styled-components';
 type CardVariant = 'filled' | 'flat';
 
 type CardProps = {
-  width?: string;
   title?: string;
-  paddingX?: number;
-  paddingY?: number;
-  marginTop?: number;
   variant?: CardVariant;
   children?: React.ReactNode;
 } & React.ComponentPropsWithoutRef<'div'>;
 
-const StyledCard = styled.div<{ $width?: string; $variant?: CardVariant; $marginTop?: number }>`
+const StyledCard = styled.div<{ $variant?: CardVariant }>`
   background: ${({ $variant = 'filled' }) => ($variant === 'filled' ? '#F8F8F8' : 'none')};
   border-radius: 8px;
-  width: ${({ $width = '360px' }) => $width};
-  margin-top: ${({ $marginTop = 0 }) => $marginTop}px;
+  width: 360px;
+  height: auto;
+  margin: 16px 0;
   font-family: Arial, sans-serif;
+  overflow: hidden; /* Para asegurar que el contenido no se desborde */
 `;
 
 const Header = styled.div`
   height: 38px;
   border-radius: 8px 8px 0 0;
-  padding-left: 15px;
+  padding: 0 16px;
   color: white;
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: flex-start;
   font-size: 14px;
   font-weight: 700;
   line-height: 16.59px;
@@ -36,16 +34,26 @@ const Header = styled.div`
   background: linear-gradient(90.02deg, #0049a5 16.3%, #0067e9 54.17%, #4d9bff 96.03%);
 `;
 
-const Content = styled.div<{ $paddingX?: number; $paddingY?: number }>`
-  padding: ${({ $paddingX = 10, $paddingY = 10 }) => `${$paddingY}px ${$paddingX}px`};
+const HeaderText = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
 `;
 
-const Card = ({ width, title, paddingX, paddingY, marginTop, variant, children, ...rest }: CardProps) => (
-  <StyledCard $width={width} $variant={variant} $marginTop={marginTop} {...rest}>
-    {title && <Header>{title}</Header>}
-    <Content $paddingX={paddingX} $paddingY={paddingY}>
-      {children}
-    </Content>
+const Content = styled.div`
+  padding: 16px;
+`;
+
+const Card = ({ title, variant = 'filled', children, ...rest }: CardProps) => (
+  <StyledCard $variant={variant} {...rest}>
+    {title && (
+      <Header title={title}>
+        <HeaderText>{title}</HeaderText>
+      </Header>
+    )}
+    <Content>{children}</Content>
   </StyledCard>
 );
 

@@ -13,7 +13,6 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  /* justify-content: space-between; */
   padding: 16px 16px;
   background: #f8f9fa;
   border-bottom: 1px solid #e9ecef;
@@ -32,6 +31,11 @@
   color: #343a40;
 }
 
+.headerTitleCompleted {
+  color: #28a745;
+  font-weight: 500;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -41,6 +45,7 @@
 }
 
 .pdfContainer {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,7 +53,7 @@
   max-height: 483.8305969238281px;
   background: #f8f9fa;
   border-bottom: 1px solid #e9ecef;
-  position: relative;
+  overflow: hidden;
 }
 
 .pdfViewer {
@@ -57,6 +62,7 @@
   border: none;
   background: #ffffff;
   border-radius: 8px;
+  transition: opacity 0.3s ease;
 }
 
 .documentList {
@@ -103,6 +109,8 @@
   border: 2px solid #e9ecef;
   cursor: pointer;
   transition: all 0.2s ease;
+  gap: 4px;
+  min-width: 0;
 }
 
 .documentItemLeft:hover {
@@ -115,6 +123,11 @@
   color: #343a40;
   margin: 0;
   font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
 }
 
 .documentItem.selected .documentItemText {
@@ -156,4 +169,160 @@
   margin: 8px 0 0;
   font-size: 14px;
   opacity: 0.7;
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(248, 249, 250, 0.95);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  gap: 12px;
+  border-radius: 8px;
+}
+
+.loadingSpinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e9ecef;
+  border-top: 3px solid #4496ff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+.uploadingIndicator {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uploadingIndicator .loadingSpinner {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingOverlay p {
+  margin: 0;
+  color: #495057;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  user-select: none;
+}
+
+.documentItem.uploading {
+  opacity: 0.8;
+}
+
+.documentItem.uploading .documentItemLeft {
+  background: #e9ecef;
+  border-color: #6c757d;
+  cursor: default;
+}
+
+.documentItem.uploading .documentItemLeft:hover {
+  background: #e9ecef;
+  transform: none;
+}
+
+.documentItem.uploading .documentItemText {
+  color: #495057;
+}
+
+.uploadingText {
+  color: #6c757d;
+  font-style: italic;
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+.documentItem.selected .uploadingText {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.documentItem.pending .documentItemLeft {
+  background: #f8f9fa;
+  border-color: #cccccc;
+  opacity: 0.6;
+}
+
+.documentItem.pending .documentItemLeft:hover {
+  background: #e9ecef;
+  transform: translateY(-1px);
+  opacity: 0.8;
+}
+
+.documentItem.pending .documentItemText {
+  color: #6c757d;
+}
+
+.documentItem.completed .documentItemLeft {
+  background: #f8f9fa;
+  border-color: #cccccc;
+  opacity: 1;
+}
+
+.documentItem.completed .documentItemLeft:hover {
+  background: #e9ecef;
+  transform: translateY(-1px);
+}
+
+.documentItem.completed .documentItemText {
+  color: #343a40;
+}
+
+.documentItem.disabled .documentItemLeft {
+  background: #f8f9fa;
+  border-color: #e9ecef;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.documentItem.disabled .documentItemLeft:hover {
+  background: #f8f9fa;
+  transform: none;
+  opacity: 0.5;
+}
+
+.documentItem.disabled .documentItemText {
+  color: #adb5bd;
+}
+
+.documentItem.disabled.selected .documentItemLeft {
+  background: rgba(68, 150, 255, 0.5);
+  border-color: rgba(68, 150, 255, 0.5);
+}
+
+.documentItem.disabled.selected .documentItemText {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.documentItem.selected .documentItemLeft {
+  background: #4496ff;
+  border-color: #4496ff;
+  opacity: 1;
+}
+
+.documentItem.selected .documentItemText {
+  color: white;
 }

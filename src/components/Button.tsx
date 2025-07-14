@@ -7,13 +7,14 @@ export interface ButtonProps extends Omit<ComponentPropsWithoutRef<'button'>, 's
   variant?: 'primary' | 'success' | 'warning' | 'danger' | 'info';
   appearance?: 'filled' | 'outline' | 'flat' | 'flat-inverted';
   size?: 'sm' | 'md' | 'lg';
+  iconInputSize?: number;
   shape?: 'square' | 'round';
   color?: string;
   icon?: (props: IconProps) => JSX.Element;
 }
 
 const iconSize = {
-  sm: 20,
+  sm: 16,
   md: 20,
   lg: 24,
 };
@@ -27,8 +28,8 @@ const variantColors = {
 };
 
 const variantDarkColors = {
-  warning: '#b8a600',
-  info: '#666666',
+  warning: '#212529',
+  info: '#898989',
 };
 
 const Button = ({
@@ -41,14 +42,22 @@ const Button = ({
   className,
   children,
   style,
+  iconInputSize,
+  disabled,
   ...rest
 }: ButtonProps) => {
   const customColorStyle = color ? { '--custom-color': color } : {};
   const combinedStyle = { ...customColorStyle, ...style };
 
-  // Para colores claros (warning, info) en filled, usar color oscuro de la misma gama
   let iconColor = color || variantColors[variant];
-  if (!color && appearance === 'filled' && (variant === 'warning' || variant === 'info')) {
+
+  if (disabled) {
+    iconColor = '#bcbcbc';
+  } else if (
+    !color &&
+    (appearance === 'filled' || appearance === 'outline') &&
+    (variant === 'warning' || variant === 'info')
+  ) {
     iconColor = variantDarkColors[variant];
   }
 
@@ -66,9 +75,10 @@ const Button = ({
         className,
       )}
       style={combinedStyle}
+      disabled={disabled}
       {...rest}
     >
-      {Icon && <Icon color={iconColor} size={iconSize[size]} />}
+      {Icon && <Icon color={iconColor} size={iconInputSize || iconSize[size]} />}
       {children}
     </button>
   );

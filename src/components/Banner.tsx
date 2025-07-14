@@ -12,8 +12,8 @@ interface BannerProps {
 const BannerIcon = {
   success: () => <CheckIcon color="#62b72d" />,
   error: () => <InformacionIcon color="#ff0000" />,
-  warning: () => <InformacionIcon color="#ffee00" />,
-  info: () => <InformacionIcon color="#cccccc" />,
+  warning: () => <InformacionIcon color="#807703" />,
+  info: () => <InformacionIcon color="#4c5260" />,
 };
 
 const Banner = ({ type = 'info', children }: BannerProps) => {

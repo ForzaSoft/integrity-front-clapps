@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { fn } from 'storybook/test';
 
 import Input from '@/components/Input';
+import BuscarIcon from '@/icons/BuscarIcon';
 
 const meta = {
   title: 'Components/Input',
@@ -10,8 +10,7 @@ const meta = {
     layout: 'padded',
     docs: {
       description: {
-        component:
-          'Componente de input que extiende las propiedades nativas de HTML input con variantes de tamaño y estilos personalizados.',
+        component: 'Componente de input con soporte para íconos y modo invertido.',
       },
     },
   },
@@ -20,32 +19,11 @@ const meta = {
     variantSize: {
       control: { type: 'select' },
       options: ['sm', 'md', 'lg'],
-      description: 'Tamaño del input',
     },
-    type: {
+    iconPosition: {
       control: { type: 'select' },
-      options: ['text', 'email', 'password', 'number', 'tel', 'url', 'search', 'date', 'time'],
-      description: 'Tipo de input HTML',
+      options: ['left', 'right'],
     },
-    placeholder: {
-      control: { type: 'text' },
-      description: 'Texto de placeholder',
-    },
-    loading: {
-      control: { type: 'boolean' },
-      description: 'Estado de carga',
-    },
-    disabled: {
-      control: { type: 'boolean' },
-      description: 'Estado deshabilitado',
-    },
-    required: {
-      control: { type: 'boolean' },
-      description: 'Campo requerido',
-    },
-  },
-  args: {
-    onChange: fn(),
   },
 } satisfies Meta<typeof Input>;
 
@@ -53,29 +31,29 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
+  name: 'Básico',
   args: {
-    placeholder: 'Ingrese su texto aquí...',
+    placeholder: 'Escribe aquí...',
     variantSize: 'md',
   },
 };
 
-export const Small: Story = {
+export const WithIcon: Story = {
+  name: 'Con ícono de búsqueda',
   args: {
-    placeholder: 'Input pequeño',
-    variantSize: 'sm',
-  },
-};
-
-export const Medium: Story = {
-  args: {
-    placeholder: 'Input mediano',
+    placeholder: 'Buscar...',
     variantSize: 'md',
+    icon: BuscarIcon,
+    iconPosition: 'left',
   },
 };
 
-export const Large: Story = {
+export const WithIconRight: Story = {
+  name: 'Con ícono a la derecha',
   args: {
-    placeholder: 'Input grande',
-    variantSize: 'lg',
+    placeholder: 'Buscar...',
+    variantSize: 'md',
+    icon: BuscarIcon,
+    iconPosition: 'right',
   },
 };

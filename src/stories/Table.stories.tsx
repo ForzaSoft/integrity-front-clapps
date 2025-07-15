@@ -1,11 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { fn } from 'storybook/test';
 
-import Button from '@/components/Button';
 import Table from '@/components/Table';
-import EditarIcon from '@/icons/EditarIcon';
-import EliminarIcon from '@/icons/EliminarIcon';
-import VisualizarIcon from '@/icons/VisualizarIcon';
 
 interface Usuario {
   id: number;
@@ -64,6 +60,11 @@ const meta = {
   component: Table<Usuario>,
   parameters: {
     layout: 'padded',
+    docs: {
+      description: {
+        component: 'Componente de tabla construido con TanStack Table.',
+      },
+    },
   },
   tags: ['autodocs'],
   args: {
@@ -75,6 +76,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
+  name: 'Básico',
   args: {
     headers: [
       { title: 'ID', value: 'id' },
@@ -86,25 +88,14 @@ export const Basic: Story = {
   },
 };
 
-export const WithAlignment: Story = {
+export const WithGlobalFilter: Story = {
+  name: 'Con filtro global',
   args: {
     headers: [
-      { title: 'ID', value: 'id', align: 'center' },
-      { title: 'Nombre', value: 'nombre', align: 'left' },
-      { title: 'Email', value: 'email', align: 'left' },
-      { title: 'Rol', value: 'rol', align: 'center' },
-      { title: 'Fecha Registro', value: 'fechaRegistro', align: 'right' },
-    ],
-    items: usuariosEjemplo,
-  },
-};
-
-export const WithCustomRenderers: Story = {
-  args: {
-    headers: [
-      { title: 'ID', value: 'id', align: 'center' },
+      { title: 'ID', value: 'id' },
       { title: 'Nombre', value: 'nombre' },
       { title: 'Email', value: 'email' },
+      { title: 'Rol', value: 'rol' },
       {
         title: 'Estado',
         renderer: (usuario: Usuario) => (
@@ -123,167 +114,17 @@ export const WithCustomRenderers: Story = {
         ),
         align: 'center',
       },
-      {
-        title: 'Acciones',
-        renderer: () => (
-          <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
-            <Button size="sm" variant="flat" icon={VisualizarIcon} />
-            <Button size="sm" variant="flat" icon={EditarIcon} />
-            <Button size="sm" variant="flat" color="negative" icon={EliminarIcon} />
-          </div>
-        ),
-        align: 'center',
-      },
     ],
     items: usuariosEjemplo,
+    enableGlobalFilter: true,
+    onGlobalFilterChange: fn(),
   },
-};
-
-export const WithHighlightedRows: Story = {
-  args: {
-    headers: [
-      { title: 'ID', value: 'id' },
-      { title: 'Nombre', value: 'nombre' },
-      { title: 'Email', value: 'email' },
-      { title: 'Rol', value: 'rol' },
-    ],
-    items: usuariosEjemplo,
-    highlightedRows: [1, 3],
-  },
-};
-
-export const WithRowClick: Story = {
-  args: {
-    headers: [
-      { title: 'ID', value: 'id' },
-      { title: 'Nombre', value: 'nombre' },
-      { title: 'Email', value: 'email' },
-      { title: 'Rol', value: 'rol' },
-    ],
-    items: usuariosEjemplo.slice(0, 3),
-    onRowClick: fn(),
-  },
-};
-
-export const Empty: Story = {
-  args: {
-    headers: [
-      { title: 'ID', value: 'id' },
-      { title: 'Nombre', value: 'nombre' },
-      { title: 'Email', value: 'email' },
-      { title: 'Rol', value: 'rol' },
-    ],
-    items: [],
-  },
-};
-
-export const SingleRow: Story = {
-  args: {
-    headers: [
-      { title: 'ID', value: 'id' },
-      { title: 'Nombre', value: 'nombre' },
-      { title: 'Email', value: 'email' },
-      { title: 'Rol', value: 'rol' },
-    ],
-    items: [usuariosEjemplo[0]],
-  },
-};
-
-export const WithChildren: Story = {
-  args: {
-    headers: [
-      { title: 'Producto' },
-      { title: 'Precio', align: 'right' },
-      { title: 'Stock', align: 'center' },
-      { title: 'Acciones', align: 'center' },
-    ],
-    children: [
-      <tr key="1">
-        <td>Producto A</td>
-        <td style={{ textAlign: 'right' }}>$99.99</td>
-        <td style={{ textAlign: 'center' }}>15</td>
-        <td style={{ textAlign: 'center' }}>
-          <Button size="sm" variant="flat" icon={EditarIcon} />
-        </td>
-      </tr>,
-      <tr key="2">
-        <td>Producto B</td>
-        <td style={{ textAlign: 'right' }}>$149.99</td>
-        <td style={{ textAlign: 'center' }}>8</td>
-        <td style={{ textAlign: 'center' }}>
-          <Button size="sm" variant="flat" icon={EditarIcon} />
-        </td>
-      </tr>,
-      <tr key="3">
-        <td>Producto C</td>
-        <td style={{ textAlign: 'right' }}>$79.99</td>
-        <td style={{ textAlign: 'center' }}>0</td>
-        <td style={{ textAlign: 'center' }}>
-          <Button size="sm" variant="flat" color="negative" icon={EliminarIcon} />
-        </td>
-      </tr>,
-    ],
-  },
-};
-
-export const Complex: Story = {
-  args: {
-    headers: [
-      { title: 'ID', value: 'id', align: 'center' },
-      { title: 'Usuario', value: 'nombre' },
-      {
-        title: 'Contacto',
-        renderer: (usuario: Usuario) => (
-          <div>
-            <div style={{ fontWeight: 'bold' }}>{usuario.email}</div>
-            <div style={{ fontSize: '12px', color: '#666' }}>
-              Registrado: {new Date(usuario.fechaRegistro).toLocaleDateString()}
-            </div>
-          </div>
-        ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Tabla con filtro global en el header (columna derecha). El filtro busca en todas las columnas searchables. Prueba escribir "María", "Médico" o "gmail".',
       },
-      {
-        title: 'Rol/Estado',
-        renderer: (usuario: Usuario) => (
-          <div>
-            <div style={{ marginBottom: '4px' }}>{usuario.rol}</div>
-            <span
-              style={{
-                padding: '2px 6px',
-                borderRadius: '12px',
-                fontSize: '10px',
-                fontWeight: 'bold',
-                color: usuario.activo ? '#62b72d' : '#e10000',
-                backgroundColor: usuario.activo ? '#f0f9ff' : '#fef2f2',
-              }}
-            >
-              {usuario.activo ? 'ACTIVO' : 'INACTIVO'}
-            </span>
-          </div>
-        ),
-        align: 'center',
-      },
-      {
-        title: 'Acciones',
-        renderer: (usuario: Usuario) => (
-          <div style={{ display: 'flex', gap: '4px', justifyContent: 'center' }}>
-            <Button size="sm" variant="flat" icon={VisualizarIcon} title="Ver" />
-            <Button size="sm" variant="flat" icon={EditarIcon} title="Editar" />
-            <Button
-              size="sm"
-              variant="flat"
-              color="negative"
-              icon={EliminarIcon}
-              title="Eliminar"
-              disabled={!usuario.activo}
-            />
-          </div>
-        ),
-        align: 'center',
-      },
-    ],
-    items: usuariosEjemplo,
-    highlightedRows: [0],
-    onRowClick: fn(),
+    },
   },
 };

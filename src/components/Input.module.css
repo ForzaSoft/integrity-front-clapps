@@ -10,10 +10,25 @@
   outline: none;
   transition: border-color 0.2s;
   max-width: 252px;
+  background-color: inherit;
 }
 
 .input:focus {
   border-color: #007bff;
+}
+
+.input.inverted {
+  color: white;
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+  background-color: transparent;
+}
+
+.input.inverted:focus {
+  border-bottom-color: white;
+}
+
+.input.inverted::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .input.loading {
@@ -26,10 +41,61 @@
   border-radius: 4px;
 }
 
+/* Input container for icon support */
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 252px;
+}
+
+.input.withIcon {
+  padding-left: 2rem;
+}
+
+.input.iconRight {
+  padding-left: 0.375rem;
+  padding-right: 2rem;
+}
+
+.iconWrapper {
+  position: absolute;
+  left: 0.5rem;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.inputContainer .iconWrapper:last-child {
+  left: auto;
+  right: 0.5rem;
+}
+
+/* Size variants */
 .sm {
   height: 1.25rem;
   padding: 0 0.375rem;
   font-size: 0.875rem;
+}
+
+.sm.withIcon {
+  padding-left: 1.75rem;
+}
+
+.sm.iconRight {
+  padding-left: 0.375rem;
+  padding-right: 1.75rem;
+}
+
+.inputContainer.sm .iconWrapper {
+  left: 0.375rem;
+}
+
+.inputContainer.sm .iconWrapper:last-child {
+  left: auto;
+  right: 0.375rem;
 }
 
 .md {
@@ -37,10 +103,37 @@
   padding: 0 0.5rem;
 }
 
+.md.withIcon {
+  padding-left: 2rem;
+}
+
+.md.iconRight {
+  padding-left: 0.5rem;
+  padding-right: 2rem;
+}
+
 .lg {
   font-size: 1.25rem;
   height: 2.5rem;
   padding: 0 1rem;
+}
+
+.lg.withIcon {
+  padding-left: 2.5rem;
+}
+
+.lg.iconRight {
+  padding-left: 1rem;
+  padding-right: 2.5rem;
+}
+
+.inputContainer.lg .iconWrapper {
+  left: 0.75rem;
+}
+
+.inputContainer.lg .iconWrapper:last-child {
+  left: auto;
+  right: 0.75rem;
 }
 
 @keyframes shimmer {

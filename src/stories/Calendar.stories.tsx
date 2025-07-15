@@ -44,7 +44,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Funciones para generar fechas relativas
 const createDateFromNow = (daysOffset: number): Date => {
   const date = new Date();
   date.setDate(date.getDate() + daysOffset);
@@ -109,7 +108,6 @@ export const RangeSelection = {
       return `Desde: ${from} - Hasta: ${to}`;
     };
 
-    // Rango del mes siguiente
     const thisMonth = createMonthRangeFromNow(0);
 
     return (
@@ -192,17 +190,10 @@ export const RestrictedRange = {
   render: () => {
     const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
 
-    // Rango de 1 a 4 semanas desde hoy
     const oneWeekFromNow = createDateFromNow(7);
     const fourWeeksFromNow = createDateFromNow(28);
 
-    // Fechas con puntos cada semana
-    const weeklyPoints = [
-      createDateFromNow(7), // 1 semana
-      createDateFromNow(14), // 2 semanas
-      createDateFromNow(21), // 3 semanas
-      createDateFromNow(28), // 4 semanas
-    ];
+    const weeklyPoints = [createDateFromNow(7), createDateFromNow(14), createDateFromNow(21), createDateFromNow(28)];
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -256,7 +247,6 @@ export const CurrentMonth = {
   render: () => {
     const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
 
-    // Mes actual
     const currentMonth = createMonthRangeFromNow(0);
 
     return (

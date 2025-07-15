@@ -3,24 +3,51 @@
   width: 100%;
   color: #605b4c;
 
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   outline: none;
   transition: border-color 0.2s;
+  max-width: 252px;
 }
 
 .input:focus {
   border-color: #007bff;
 }
 
+.input.loading {
+  cursor: default;
+  pointer-events: none;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 3.5s infinite linear;
+  border: 0.5px solid #e2dedc;
+  border-radius: 4px;
+}
+
+.sm {
+  height: 1.25rem;
+  padding: 0 0.375rem;
+  font-size: 0.875rem;
+}
+
 .md {
   height: 1.525rem;
   padding: 0 0.5rem;
-  border-radius: 0.25rem;
 }
 
 .lg {
   font-size: 1.25rem;
   height: 2.5rem;
   padding: 0 1rem;
-  border-radius: 0.5rem;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }

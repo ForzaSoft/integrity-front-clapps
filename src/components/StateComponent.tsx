@@ -8,14 +8,21 @@ interface LabelProps {
 }
 
 const State = styled.div<{ $background: string; $color: string; $borderColor: string }>`
-  height: 22px;
-  width: 85px;
-  min-width: 85px;
+  height: 22.35px;
+  min-height: 22.35px;
+  max-height: 22.35px;
+  width: 85.35px;
+  min-width: 85.35px;
+  max-width: 85.35px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   line-height: normal;
   text-align: center;
   text-underline-position: from-font;

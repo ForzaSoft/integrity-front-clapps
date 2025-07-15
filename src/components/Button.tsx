@@ -79,7 +79,7 @@ const Button = ({
       {...rest}
     >
       {Icon && <Icon color={iconColor} size={iconInputSize || iconSize[size]} />}
-      {children}
+      {children && <span className={styles.buttonText}>{children}</span>}
     </button>
   );
 };

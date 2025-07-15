@@ -9,6 +9,17 @@
   color: #4c5260;
 }
 
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  min-width: 18px;
+  min-height: 18px;
+}
+
 .success {
   background-color: #e4f9d7;
   border: 1px solid #62b72d;

@@ -15,7 +15,7 @@
   justify-content: center;
   gap: 0.5rem;
   width: fit-content;
-  max-width: 300px;
+  max-width: 200px;
   white-space: nowrap;
   cursor: pointer;
 
@@ -32,6 +32,13 @@
   & > svg {
     flex-shrink: 0;
   }
+}
+
+.buttonText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .filled:disabled {
@@ -127,14 +134,17 @@
   padding: 0 0.75rem;
   height: var(--sm-size);
   gap: 0.25rem;
+  min-width: 80px;
 
   &.hasIcon {
     padding-left: 0.5rem;
+    min-width: 90px;
   }
 
   &.iconOnly {
     padding: unset;
     width: var(--sm-size);
+    min-width: var(--sm-size);
   }
 }
 
@@ -143,14 +153,17 @@
   padding: 0 0.75rem;
   height: var(--md-size);
   gap: 0.375rem;
+  min-width: 100px;
 
   &.hasIcon {
     padding-left: 0.5rem;
+    min-width: 110px;
   }
 
   &.iconOnly {
     padding: unset;
     width: var(--md-size);
+    min-width: var(--md-size);
   }
 }
 
@@ -158,14 +171,17 @@
   font-size: 1rem;
   padding: 0 1rem;
   height: var(--lg-size);
+  min-width: 120px;
 
   &.hasIcon {
     padding-left: 0.75rem;
+    min-width: 130px;
   }
 
   &.iconOnly {
     padding: unset;
     width: var(--lg-size);
+    min-width: var(--lg-size);
   }
 }
 

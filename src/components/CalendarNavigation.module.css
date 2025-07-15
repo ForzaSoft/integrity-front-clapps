@@ -1,0 +1,25 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 10px;
+  padding-left: 1rem;
+  border-left: solid 1px #ffffff;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  min-width: 228px;
+  height: 248px;
+  box-sizing: border-box;
+}
+
+.navLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #4c5260;
+  padding-left: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.dropdownContainer {
+  margin-bottom: 0.75rem;
+}

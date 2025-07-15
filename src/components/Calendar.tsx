@@ -1,12 +1,12 @@
-import Dropdown, { DropdownOption } from '@/components/Dropdown';
 import React from 'react';
-import { DateLib, DateRange, DayPicker, formatMonthDropdown } from 'react-day-picker';
+import { DateRange, DayPicker } from 'react-day-picker';
 import { es } from 'react-day-picker/locale';
-import Button from './Button';
 import styles from './Calendar.module.css';
 
 type CalendarProps = {
-  onUpdate: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
+  onSelect: (value: DateRange | undefined) => void;
+  selected?: DateRange;
+  month?: Date;
   points?: Date[];
   from?: Date;
   to?: Date;
@@ -14,66 +14,8 @@ type CalendarProps = {
 
 const customWeekdayNames: string[] = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
 
-const capitalizeFirstLetter = (source: string): string => {
-  return String(source).charAt(0).toUpperCase() + String(source).slice(1);
-};
-
-const getYearList = (): DropdownOption<number>[] => {
-  const currentYear = new Date().getFullYear();
-
-  return Array.from({ length: 12 }, (_, i) => {
-    const value = currentYear - 10 + i;
-    return {
-      value,
-      label: value.toString(),
-    };
-  });
-};
-
-const getMonthsList = (): DropdownOption<number>[] => {
-  const dateLib = new DateLib({ locale: es });
-
-  return Array.from({ length: 12 }, (_, i) => {
-    return {
-      value: i,
-      label: capitalizeFirstLetter(formatMonthDropdown(new Date(2025, i, 1), dateLib)),
-    };
-  });
-};
-
-const Calendar = ({ onUpdate, points = [], from, to, ...rest }: CalendarProps) => {
-  const [years, setYears] = React.useState<DropdownOption<number>[]>();
-  const [selYear, setSelYear] = React.useState<number>();
-
-  const [months, setMonths] = React.useState<DropdownOption<number>[]>();
-  const [selMonth, setSelMonth] = React.useState<number>();
-
-  const [active, setActive] = React.useState<Date>(new Date());
-
-  const [selected, setSelected] = React.useState<DateRange | undefined>();
-  const [lastSelected, setLastSelected] = React.useState<DateRange | undefined>();
-
-  points = points.filter((point) => point.getMonth() === active.getMonth());
-
-  React.useEffect(() => {
-    setYears(getYearList());
-    setMonths(getMonthsList());
-
-    setSelYear(selected?.from?.getFullYear() || new Date().getFullYear());
-    setSelMonth(selected?.from?.getMonth() || new Date().getMonth());
-  }, []);
-
-  React.useEffect(() => {
-    if (lastSelected === undefined || lastSelected.from !== selected?.from || lastSelected.to !== selected?.to) {
-      setLastSelected(selected);
-      onUpdate(selected);
-    }
-  }, [selected, lastSelected, onUpdate]);
-
-  React.useEffect(() => {
-    setSelYear(active?.getFullYear());
-    setSelMonth(active?.getMonth());
-  }, [active]);
+const Calendar = ({ onSelect, selected, month = new Date(), points = [], from, to, ...rest }: CalendarProps) => {
+  const filteredPoints = points.filter((point) => point.getMonth() === month.getMonth());
 
   const isDateDisabled = (date: Date): boolean => {
     if (from && date < from) return true;
@@ -89,18 +31,16 @@ const Calendar = ({ onUpdate, points = [], from, to, ...rest }: CalendarProps) =
         weekStartsOn={0}
         mode="range"
         selected={selected}
-        month={active}
+        month={month}
         disabled={isDateDisabled}
         fromDate={from}
         toDate={to}
-        onSelect={(value) => {
-          setSelected(value);
-        }}
+        onSelect={onSelect}
         formatters={{
           formatWeekdayName: (weekday) => customWeekdayNames[weekday.getDay()] || '',
         }}
         modifiers={{
-          points: points,
+          points: filteredPoints,
         }}
         modifiersClassNames={{
           points: 'modifier-points',
@@ -145,82 +85,6 @@ const Calendar = ({ onUpdate, points = [], from, to, ...rest }: CalendarProps) =
         }}
         hideNavigation
       />
-      <div className={styles.nav}>
-        <div className={styles.navLabel}>Año</div>
-        <Dropdown
-          options={years}
-          selected={selYear}
-          onSelected={(value) => {
-            setActive(new Date(value, active.getMonth(), 1));
-          }}
-        />
-        <div className={styles.navLabel}>Mes</div>
-        <Dropdown
-          options={months}
-          selected={selMonth}
-          onSelected={(value) => {
-            setActive(new Date(selected?.from?.getFullYear() || new Date().getFullYear(), value, 1));
-          }}
-        />
-        <div className={styles.navLabel}>Días</div>
-        <div className={styles.buttonGroup}>
-          <Button
-            className={styles.yesterdayButton}
-            appearance="outline"
-            size="sm"
-            onClick={() => {
-              const date = new Date();
-              date.setDate(date.getDate() - 1);
-              if (!isDateDisabled(date)) {
-                setSelected({ from: date, to: undefined });
-                setActive(date);
-              }
-            }}
-            disabled={(() => {
-              const date = new Date();
-              date.setDate(date.getDate() - 1);
-              return isDateDisabled(date);
-            })()}
-          >
-            &lsaquo;
-          </Button>
-          <Button
-            className={styles.todayButton}
-            appearance="outline"
-            size="sm"
-            onClick={() => {
-              const today = new Date();
-              if (!isDateDisabled(today)) {
-                setSelected({ from: today, to: undefined });
-                setActive(today);
-              }
-            }}
-            disabled={isDateDisabled(new Date())}
-          >
-            hoy
-          </Button>
-          <Button
-            className={styles.tomorrowButton}
-            appearance="outline"
-            size="sm"
-            onClick={() => {
-              const date = new Date();
-              date.setDate(date.getDate() + 1);
-              if (!isDateDisabled(date)) {
-                setSelected({ from: date, to: undefined });
-                setActive(date);
-              }
-            }}
-            disabled={(() => {
-              const date = new Date();
-              date.setDate(date.getDate() + 1);
-              return isDateDisabled(date);
-            })()}
-          >
-            &rsaquo;
-          </Button>
-        </div>
-      </div>
     </div>
   );
 };

@@ -191,6 +191,41 @@ const createInitialSections = (): DocumentSection[] => [
 ];
 
 export const Default: Story = {
+  args: {
+    title: 'Documentos del turno',
+    sections: [
+      {
+        id: 'orden-medica',
+        name: 'Orden médica',
+        status: 'completed',
+        url: DOCUMENT_URLS['orden-medica'],
+        selected: true,
+      },
+      {
+        id: 'autorizacion',
+        name: 'Autorización',
+        status: 'pending',
+      },
+      {
+        id: 'consentimiento-informado',
+        name: 'Consentimiento informado',
+        status: 'pending',
+      },
+    ],
+    currentDocumentUrl: DOCUMENT_URLS['orden-medica'],
+    isLoading: false,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Versión básica del componente controlada por los controles de Storybook. Permite modificar todas las props desde el panel de controles para ver cómo afectan al componente.',
+      },
+    },
+  },
+};
+
+export const Interactive: Story = {
   render: () => {
     const [sections, setSections] = useState<DocumentSection[]>(createInitialSections());
     const [currentDocumentUrl, setCurrentDocumentUrl] = useState<string>(DOCUMENT_URLS['orden-medica']);
@@ -276,5 +311,13 @@ export const Default: Story = {
         }}
       />
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Componente completamente interactivo que demuestra todas las funcionalidades: subida de archivos PDF, estados de carga, selección, eliminación y reemplazo de documentos. Las 3 secciones son fijas: Orden médica, Autorización y Consentimiento informado. Funcionalidades destacadas: bloqueo de selección durante subida, botones condicionalmente habilitados según estado del documento, feedback visual mejorado con spinners de carga, y tooltips informativos.',
+      },
+    },
   },
 };

@@ -1,5 +1,6 @@
+import clsx from 'clsx';
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styles from './Dropdown.module.css';
 
 export interface DropdownOption<T> {
   value: T;
@@ -10,132 +11,193 @@ type DropdownProps<T> = {
   options?: DropdownOption<T>[];
   selected?: T;
   onSelected?: (value: T) => void;
+  label?: string;
+  loading?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
-const Dropdown = styled.div`
-  width: 100px;
-  height: 22px;
-
-  position: relative;
-
-  font-size: 10px;
-  line-height: 12px;
-  color: #4c5260;
-`;
-
-const DropdownBox = styled.div<{
-  $open: boolean;
-}>`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  padding-left: 8px;
-  padding-right: 8px;
-  background: #ffffff;
-  border-width: 1px;
-  height: 100%;
-  border: 1px solid #e2dedc;
-
-  ${(props) => {
-    if (props.$open) {
-      return css`
-        -webkit-border-radius: 11px 11px 0px 0px;
-        border-radius: 11px 11px 0px 0px;
-        border-bottom: none;
-      `;
-    } else {
-      return css`
-        -webkit-border-radius: 11px;
-        border-radius: 11px;
-      `;
-    }
-  }}
-`;
-
-const DropdownMenu = styled.ul`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 98px;
-  background: white;
-  border-top: none;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  max-height: 150px;
-  overflow-y: auto;
-  z-index: 1000;
-  -webkit-border-radius: 0px 0px 11px 11px;
-  border-radius: 0px 0px 11px 11px;
-  border: 1px solid #e2dedc;
-  border-top: 1px solid rgb(247, 245, 243);
-`;
-
-const DropdownItem = styled.li`
-  padding: 4px 8px 4px;
-  cursor: pointer;
-  user-select: none;
-  &:hover {
-    background: #f0f0f0;
-  }
-`;
-
-const Triangle = styled.span`
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 6px solid #898989;
-  margin-left: 10px;
-  border-radius: 2px;
-`;
-
 const DropdownComponent = <T,>(props: DropdownProps<T>) => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
-
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [openUpward, setOpenUpward] = React.useState(false);
   const [selected, setSelected] = React.useState<DropdownOption<T> | undefined>();
+  const [labelBackgroundColor, setLabelBackgroundColor] = React.useState<string>('inherit');
 
-  const [options, setOptions] = React.useState<DropdownOption<T>[]>([]);
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
+  const labelRef = React.useRef<HTMLDivElement>(null);
+  const options = props.options || [];
 
   React.useEffect(() => {
-    if (props.options) {
-      setOptions(props.options);
-      setSelected(props.options[0]);
+    if (!dropdownRef.current) return;
+
+    const getEffectiveBackgroundColor = (element: HTMLElement): string => {
+      let currentElement: HTMLElement | null = element;
+
+      while (currentElement && currentElement !== document.body) {
+        const computedStyle = window.getComputedStyle(currentElement);
+        const backgroundColor = computedStyle.backgroundColor;
+
+        if (
+          backgroundColor &&
+          backgroundColor !== 'transparent' &&
+          backgroundColor !== 'rgba(0, 0, 0, 0)' &&
+          !backgroundColor.includes('rgba(0, 0, 0, 0)')
+        ) {
+          return backgroundColor;
+        }
+
+        currentElement = currentElement.parentElement;
+      }
+
+      const bodyStyle = window.getComputedStyle(document.body);
+      const bodyBg = bodyStyle.backgroundColor;
+      if (bodyBg && bodyBg !== 'transparent' && bodyBg !== 'rgba(0, 0, 0, 0)') {
+        return bodyBg;
+      }
+
+      const htmlStyle = window.getComputedStyle(document.documentElement);
+      const htmlBg = htmlStyle.backgroundColor;
+      if (htmlBg && htmlBg !== 'transparent' && htmlBg !== 'rgba(0, 0, 0, 0)') {
+        return htmlBg;
+      }
+
+      return '#ffffff';
+    };
+
+    const parentElement = dropdownRef.current.parentElement;
+    if (parentElement) {
+      const bgColor = getEffectiveBackgroundColor(parentElement);
+      setLabelBackgroundColor(bgColor);
     }
-  }, [props.options]);
+  }, []);
 
   React.useEffect(() => {
-    if (props.selected !== undefined) {
-      setSelected(options.find((el) => el.value == props.selected));
+    if (options.length > 0 && !selected) {
+      const defaultSelected = options.find((opt) => opt.value === props.selected) || options[0];
+      setSelected(defaultSelected);
     }
-  }, [options, props.selected]);
+  }, [props.options, props.selected, selected]);
 
   React.useEffect(() => {
-    if (selected !== undefined) props.onSelected?.(selected.value);
-  }, [selected]);
+    if (selected && props.onSelected) {
+      props.onSelected(selected.value);
+    }
+  }, [selected?.value, props.onSelected]);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => {
+    if (props.loading) return;
+    setIsOpen(!isOpen);
+  };
 
   const handleSelect = (option: DropdownOption<T>) => {
+    if (props.loading) return;
     setSelected(option);
     setIsOpen(false);
   };
 
+  React.useEffect(() => {
+    if (!isOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
+
+  React.useEffect(() => {
+    if (!isOpen || props.loading) {
+      setOpenUpward(false);
+      return;
+    }
+
+    if (!dropdownRef.current) return;
+
+    const rect = dropdownRef.current.getBoundingClientRect();
+    const menuHeight = Math.min(options.length * 32 + 16, 158);
+
+    let container = dropdownRef.current.parentElement;
+    let containerRect = null;
+
+    while (container && container !== document.body) {
+      const styles = window.getComputedStyle(container);
+      const hasOverflow =
+        styles.overflow !== 'visible' || styles.overflowY !== 'visible' || styles.overflowX !== 'visible';
+
+      if (hasOverflow) {
+        containerRect = container.getBoundingClientRect();
+        break;
+      }
+      container = container.parentElement;
+    }
+
+    if (!containerRect) {
+      containerRect = {
+        top: 0,
+        bottom: window.innerHeight,
+        left: 0,
+        right: window.innerWidth,
+      };
+    }
+
+    const spaceBelow = containerRect.bottom - rect.bottom;
+    const spaceAbove = rect.top - containerRect.top;
+
+    const shouldOpenUpward = spaceBelow < menuHeight && spaceAbove >= menuHeight;
+
+    setOpenUpward(shouldOpenUpward);
+  }, [isOpen, options.length, props.loading]);
+
+  if (props.loading) {
+    return (
+      <div className={styles.dropdown}>
+        <div className={clsx(styles.dropdownBox, styles.loading)} />
+      </div>
+    );
+  }
+
   return (
-    <Dropdown>
-      <DropdownBox $open={isOpen} onClick={toggleDropdown}>
-        {selected ? selected.label : <span></span>}
-        <Triangle />
-      </DropdownBox>
-      {isOpen && (
-        <DropdownMenu>
-          {options.map((option, index) => (
-            <DropdownItem key={index} onClick={() => handleSelect(option)}>
-              {option.label}
-            </DropdownItem>
-          ))}
-        </DropdownMenu>
+    <div className={styles.dropdown} ref={dropdownRef}>
+      {props.label && (
+        <div
+          ref={labelRef}
+          className={clsx(styles.dropdownLabel, {
+            [styles.hidden]: isOpen && openUpward,
+          })}
+          style={{
+            backgroundColor: labelBackgroundColor,
+          }}
+        >
+          {props.label}
+        </div>
       )}
-    </Dropdown>
+
+      <div
+        className={clsx(styles.dropdownBox, {
+          [styles.open]: isOpen,
+          [styles.openUpward]: isOpen && openUpward,
+        })}
+        onClick={toggleDropdown}
+      >
+        <span className={styles.dropdownText}>{selected?.label || ''}</span>
+        <span
+          className={clsx(styles.triangle, {
+            [styles.openUpward]: isOpen && openUpward,
+          })}
+        />
+      </div>
+
+      {isOpen && (
+        <ul className={clsx(styles.dropdownMenu, { [styles.openUpward]: openUpward })}>
+          {options.map((option, index) => (
+            <li key={index} className={styles.dropdownItem} onClick={() => handleSelect(option)}>
+              {option.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };
 

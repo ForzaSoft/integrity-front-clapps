@@ -1,0 +1,132 @@
+.dropdown {
+  width: 211.47px;
+  position: relative;
+  font-size: 14px;
+  color: #4c5260;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.dropdownLabel {
+  font-size: 12px;
+  color: #4c5260;
+  font-weight: 400;
+  position: absolute;
+  top: -6px;
+  left: 12px;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  z-index: 11;
+  padding: 0 4px;
+  line-height: 12px;
+  height: 12px;
+}
+
+.dropdownLabel.hidden {
+  display: none;
+}
+
+.dropdownBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0 8px;
+  background: #ffffff;
+  height: 35.67px;
+  border: 0.5px solid #e2dedc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+}
+
+.dropdownBox.loading {
+  cursor: default;
+  pointer-events: none;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 3.5s infinite linear;
+}
+
+.dropdownBox.open {
+  border-radius: 4px 4px 0px 0px;
+  border-bottom: none;
+}
+
+.dropdownBox.open.openUpward {
+  border-radius: 0px 0px 4px 4px;
+  border-top: none;
+  border-bottom: 0.5px solid #e2dedc;
+}
+
+.dropdownText {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 8px;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+  border: 0.5px solid #e2dedc;
+  border-radius: 0px 0px 4px 4px;
+  border-top: 0.5px solid rgb(247, 245, 243);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdownMenu.openUpward {
+  top: auto;
+  bottom: 100%;
+  border-radius: 4px 4px 0px 0px;
+  border-top: 0.5px solid #e2dedc;
+  border-bottom: 0.5px solid rgb(247, 245, 243);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdownItem {
+  padding: 8px;
+  cursor: pointer;
+  user-select: none;
+  background: white;
+}
+
+.dropdownItem:hover {
+  background: #f0f0f0;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #898989;
+  flex-shrink: 0;
+}
+
+.triangle.openUpward {
+  border-top: none;
+  border-bottom: 6px solid #898989;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

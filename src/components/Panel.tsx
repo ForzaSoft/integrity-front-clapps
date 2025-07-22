@@ -34,7 +34,9 @@ const Panel: FC<PanelProps> = ({ ref, className, header, children, footer }) => 
     <dialog className={styles.container} open={isOpen}>
       <div className={styles.backdrop}>
         <div className={clsx(styles.panel, className)}>
-          <div className={styles.header}>{header}</div>
+          <div className={styles.header}>
+            <span className={styles.headerText}>{header}</span>
+          </div>
           <div className={styles.content}>{children}</div>
           {footer && <div className={styles.footer}>{footer}</div>}
         </div>

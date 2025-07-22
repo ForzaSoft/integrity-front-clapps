@@ -28,15 +28,30 @@
   background-color: white;
   border-radius: 0.5rem 0 0 0;
   overflow: hidden;
+  font-family: Arial, sans-serif;
 }
 
 .header {
+  height: 38px;
+  padding: 0 16px;
+  color: white;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5em 1em;
-  background: var(--gradiente-azul);
-  color: white;
+  justify-content: flex-start;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16.59px;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  background: linear-gradient(90.02deg, #0049a5 16.3%, #0067e9 54.17%, #4d9bff 96.03%);
+}
+
+.headerText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
 }
 
 .content {

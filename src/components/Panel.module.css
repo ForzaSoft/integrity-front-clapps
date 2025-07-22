@@ -18,17 +18,18 @@
 
 .panel {
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: 2rem;
+  bottom: 2rem;
   top: 4rem;
   width: 50rem;
   display: flex;
   flex-direction: column;
   color: #4c5260;
   background-color: white;
-  border-radius: 0.5rem 0 0 0;
+  border-radius: 0.75rem;
   overflow: hidden;
   font-family: Arial, sans-serif;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .header {
@@ -37,6 +38,8 @@
   color: white;
   display: flex;
   align-items: center;
+  align-content: center;
+  gap: 8px;
   justify-content: flex-start;
   font-size: 14px;
   font-weight: 700;

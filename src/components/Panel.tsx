@@ -1,3 +1,4 @@
+import FormEditIcon from '@/icons/FormEditIcon';
 import clsx from 'clsx';
 import { FC, ReactNode, RefObject, useCallback, useImperativeHandle, useState } from 'react';
 import styles from './Panel.module.css';
@@ -35,6 +36,9 @@ const Panel: FC<PanelProps> = ({ ref, className, header, children, footer }) => 
       <div className={styles.backdrop}>
         <div className={clsx(styles.panel, className)}>
           <div className={styles.header}>
+            <span className={styles.headerIcon}>
+              <FormEditIcon color="white" />
+            </span>
             <span className={styles.headerText}>{header}</span>
           </div>
           <div className={styles.content}>{children}</div>

@@ -4,7 +4,6 @@ import { DateRange } from 'react-day-picker';
 import { fn } from 'storybook/test';
 
 import Calendar from '@/components/Calendar';
-import CalendarNavigation from '@/components/CalendarNavigation';
 
 const meta = {
   title: 'Components/Calendar',
@@ -20,29 +19,9 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    onSelect: {
-      description: 'Función que se ejecuta cuando se selecciona un rango de fechas',
-      action: 'date-range-selected',
-    },
-    selected: {
-      control: { type: 'object' },
-      description: 'Rango de fechas actualmente seleccionado',
-    },
-    month: {
-      control: { type: 'date' },
-      description: 'Mes que se muestra en el calendario',
-    },
     points: {
       control: { type: 'object' },
       description: 'Array de fechas que se marcarán con un punto indicador',
-    },
-    from: {
-      control: { type: 'date' },
-      description: 'Fecha mínima seleccionable (delimita el inicio del rango)',
-    },
-    to: {
-      control: { type: 'date' },
-      description: 'Fecha máxima seleccionable (delimita el final del rango)',
     },
   },
   args: {
@@ -61,7 +40,7 @@ export const Default: Story = {
   },
 };
 
-export const WithNavigation = {
+export const WithDateRange = {
   render: () => {
     const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
     const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
@@ -119,21 +98,12 @@ export const WithNavigation = {
             to={dateRange.end}
             month={currentMonth}
             selected={selectedRange}
-            onSelect={(range) => {
-              if (range && typeof range === 'object' && 'from' in range) {
-                setSelectedRange(range);
-                console.log('Rango seleccionado:', range);
-              }
+            onSelect={(range: DateRange | undefined) => {
+              setSelectedRange(range);
+              console.log('Rango seleccionado:', range);
             }}
           />
         </div>
-
-        <CalendarNavigation
-          currentMonth={currentMonth}
-          onDateChange={(date) => {
-            setCurrentMonth(date);
-          }}
-        />
 
         <div style={{ flex: '1', minWidth: '300px' }}>
           <div
@@ -195,6 +165,7 @@ export const WithNavigation = {
                 <li>Usa los dropdowns para cambiar año/mes</li>
                 <li>Haz clic en fechas del calendario para seleccionar rangos</li>
                 <li>Los puntos azules indican fechas especiales</li>
+                <li>Los botones de navegación (←, hoy, →) cambian la vista del mes</li>
               </ul>
             </div>
           </div>

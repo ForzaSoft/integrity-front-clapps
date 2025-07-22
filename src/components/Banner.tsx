@@ -1,5 +1,7 @@
+import AlertTriangleOutlineIcon from '@/icons/AlertTriangleOutlineIcon';
 import CheckIcon from '@/icons/CheckIcon';
-import InformacionIcon from '@/icons/InformacionIcon';
+import ErrorCircleOutlineIcon from '@/icons/ErrorCircleOutlineIcon';
+import InfoCircleIcon from '@/icons/InfoCircleIcon';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 import styles from './Banner.module.css';
@@ -11,9 +13,9 @@ interface BannerProps {
 
 const BannerIcon = {
   success: () => <CheckIcon color="#62b72d" />,
-  error: () => <InformacionIcon color="#ff0000" />,
-  warning: () => <InformacionIcon color="#807703" />,
-  info: () => <InformacionIcon color="#4c5260" />,
+  error: () => <ErrorCircleOutlineIcon color="#dc3545" />,
+  warning: () => <AlertTriangleOutlineIcon color="#ffc107" />,
+  info: () => <InfoCircleIcon color="#6c757d" />,
 };
 
 const Banner = ({ type = 'info', children }: BannerProps) => {

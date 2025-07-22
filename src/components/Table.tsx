@@ -153,6 +153,7 @@ const Table = <RowT extends object>({
               <th className={styles.filterHeader}>
                 <Input
                   variantSize="sm"
+                  appearance="underline"
                   placeholder={globalFilterPlaceholder}
                   value={globalFilter}
                   onChange={(e) => handleGlobalFilterChange(e.target.value)}

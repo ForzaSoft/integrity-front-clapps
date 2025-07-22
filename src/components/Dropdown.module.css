@@ -108,6 +108,11 @@
   background: #f0f0f0;
 }
 
+.dropdownItem.focused {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
 .triangle {
   width: 0;
   height: 0;

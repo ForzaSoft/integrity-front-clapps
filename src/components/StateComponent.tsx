@@ -34,15 +34,27 @@ const State = styled.div<{ $background: string; $color: string; $borderColor: st
 
 interface StateComponentProps {
   idEstado: TurnoEstadoId;
-  estadoNombre: string;
+  // estadoNombre: string;
 }
 
-const StateComponent = ({ idEstado, estadoNombre }: StateComponentProps) => {
+const StateComponent = ({ idEstado }: StateComponentProps) => {
   if (!idEstado) {
     return;
   }
 
   let buttonProps: LabelProps | undefined;
+  let label = '';
+
+  // Vacio: 0,
+  // Cancelado: 1,
+  // Atendido: 2,
+  // Atendiendo: 3,
+  // Presente: 4,
+  // Confirmado: 5,
+  // Controlado: 6,
+  // Llamado: 7,
+  // Bloqueado: 8,
+  // Asignado: 9,
 
   switch (idEstado) {
     case TurnoEstadoTipo.Cancelado:
@@ -51,23 +63,47 @@ const StateComponent = ({ idEstado, estadoNombre }: StateComponentProps) => {
         color: '#E10000',
         borderColor: '#FFB5B5',
       };
+      label = 'Cancelado';
       break;
     case TurnoEstadoTipo.Atendido:
+      buttonProps = {
+        background: '#E4F9D7',
+        color: '#62B72D',
+        borderColor: '#BDE1A7',
+      };
+      label = 'Atendido';
+      break;
     case TurnoEstadoTipo.Atendiendo:
+      buttonProps = {
+        background: '#E4F9D7',
+        color: '#62B72D',
+        borderColor: '#BDE1A7',
+      };
+      label = 'Atendiendo';
+      break;
     case TurnoEstadoTipo.Controlado:
       buttonProps = {
         background: '#E4F9D7',
         color: '#62B72D',
         borderColor: '#BDE1A7',
       };
+      label = 'Controlado';
       break;
     case TurnoEstadoTipo.Presente:
+      buttonProps = {
+        background: '#E4F9D7',
+        color: '#62B72D',
+        borderColor: '#BDE1A7',
+      };
+      label = 'Presente';
+      break;
     case TurnoEstadoTipo.Llamado:
       buttonProps = {
         background: '#DDE1FE',
         color: '#1530BB',
         borderColor: '#A8C6FF',
       };
+      label = 'Llamado';
       break;
     case TurnoEstadoTipo.Confirmado:
       buttonProps = {
@@ -75,13 +111,38 @@ const StateComponent = ({ idEstado, estadoNombre }: StateComponentProps) => {
         color: '#46CDFF',
         borderColor: '#46CDFF',
       };
+      label = 'Confirmado';
+      break;
+    case TurnoEstadoTipo.Bloqueado:
+      buttonProps = {
+        background: '#FFEDED',
+        color: '#E10000',
+        borderColor: '#FFB5B5',
+      };
+      label = 'Bloqueado';
+      break;
+    case TurnoEstadoTipo.Asignado:
+      buttonProps = {
+        background: '#DDE1FE',
+        color: '#1530BB',
+        borderColor: '#A8C6FF',
+      };
+      label = 'Asignado';
+      break;
+    default:
+      buttonProps = {
+        background: '#DFF6FF',
+        color: '#46CDFF',
+        borderColor: '#46CDFF',
+      };
+      label = 'Vacio';
       break;
   }
 
   if (buttonProps) {
     return (
       <State $background={buttonProps.background} $color={buttonProps.color} $borderColor={buttonProps.borderColor}>
-        {estadoNombre}
+        {label}
       </State>
     );
   }

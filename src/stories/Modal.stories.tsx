@@ -2,7 +2,6 @@ import type { Meta } from '@storybook/nextjs-vite';
 import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import Button from '../components/Button';
-import Input from '../components/Input';
 import Modal, { ModalRef } from '../components/Modal';
 
 const meta = {
@@ -73,22 +72,6 @@ export const Basic = {
   ),
 };
 
-export const WithForm = {
-  render: () => (
-    <ModalWrapper title="Formulario de Paciente">
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <Input placeholder="Nombre completo" />
-        <Input placeholder="DNI" />
-        <Input placeholder="Teléfono" />
-        <Input placeholder="Email" />
-        <p style={{ fontSize: '0.875rem', color: '#666' }}>
-          Complete todos los campos requeridos para registrar al paciente.
-        </p>
-      </div>
-    </ModalWrapper>
-  ),
-};
-
 export const Confirmation = {
   render: () => {
     const modalRef = useRef<ModalRef>(null);
@@ -107,11 +90,11 @@ export const Confirmation = {
           <p>¿Está seguro que desea cancelar este turno?</p>
           <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '0.5rem' }}>Esta acción no se puede deshacer.</p>
           <div style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-            <Button color="negative" onClick={handleClose}>
-              Cancelar
-            </Button>
-            <Button color="positive" onClick={handleClose}>
+            <Button variant="success" onClick={handleClose}>
               Confirmar
+            </Button>
+            <Button variant="danger" onClick={handleClose}>
+              Cancelar
             </Button>
           </div>
         </div>

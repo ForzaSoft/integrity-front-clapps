@@ -33,8 +33,10 @@ const Modal: FC<ModalProps> = ({ ref, className, title, children }) => {
     <dialog className={styles.container} open={isOpen}>
       <div className={styles.backdrop}>
         <div className={clsx(styles.modal, className)}>
-          <div className={styles.title}>{title}</div>
-          {children}
+          <div className={styles.header}>
+            <span className={styles.headerText}>{title}</span>
+          </div>
+          <div className={styles.content}>{children}</div>
         </div>
       </div>
     </dialog>

@@ -63,3 +63,7 @@
 .title {
   font-size: 1.5rem;
 }
+
+.headerIconClose {
+  cursor: pointer;
+}

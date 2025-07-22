@@ -85,16 +85,21 @@ export const Confirmation = {
     };
 
     const modalContent = (
-      <Modal ref={modalRef} title="Confirm Action">
+      <Modal ref={modalRef} title="Turnos del paciente">
         <div>
-          <p>Are you sure you want to cancel this appointment?</p>
-          <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '0.5rem' }}>This action cannot be undone.</p>
+          <p style={{ fontSize: '14px', color: '#666' }}>No se encontró un paciente con los datos ingresados</p>
+          <p style={{ fontSize: '14px', color: '#666', marginTop: '0.5rem' }}>
+            Numero de documento: <b>41938992</b>
+          </p>
+          <p style={{ fontSize: '14px', color: '#666', marginTop: '0.5rem' }}>
+            ¿Desea buscar nuevamente o dar de alta un nuevo paciente?
+          </p>
           <div style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-            <Button variant="success" onClick={handleClose}>
-              Confirm
+            <Button variant="info" appearance="outline" onClick={handleClose}>
+              Buscar Nuevamente
             </Button>
-            <Button variant="danger" onClick={handleClose}>
-              Cancel
+            <Button variant="primary" onClick={handleClose}>
+              Crear
             </Button>
           </div>
         </div>

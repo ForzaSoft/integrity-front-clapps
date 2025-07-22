@@ -27,11 +27,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    title: 'Card Básica',
+    title: 'Basic Card',
     children: (
       <div>
-        <p>Este es el contenido básico de la card.</p>
-        <p>Tiene dimensiones fijas de 360px de ancho y padding de 16px.</p>
+        <p>This is the basic card content.</p>
+        <p>It has fixed dimensions of 360px width and 16px padding.</p>
       </div>
     ),
   },
@@ -39,12 +39,12 @@ export const Basic: Story = {
 
 export const Flat: Story = {
   args: {
-    title: 'Card Flat',
+    title: 'Flat Card',
     variant: 'flat',
     children: (
       <div>
-        <p>Esta card usa la variante &apos;flat&apos; que no tiene fondo gris.</p>
-        <p>Solo se ve el header con gradiente.</p>
+        <p>This card uses the &apos;flat&apos; variant which has no gray background.</p>
+        <p>Only the header with gradient is visible.</p>
       </div>
     ),
   },
@@ -52,12 +52,12 @@ export const Flat: Story = {
 
 export const Filled: Story = {
   args: {
-    title: 'Card Filled',
+    title: 'Filled Card',
     variant: 'filled',
     children: (
       <div>
-        <p>Esta card usa la variante &apos;filled&apos; con fondo gris.</p>
-        <p>Es la variante por defecto.</p>
+        <p>This card uses the &apos;filled&apos; variant with gray background.</p>
+        <p>This is the default variant.</p>
       </div>
     ),
   },
@@ -65,11 +65,11 @@ export const Filled: Story = {
 
 export const LongTitle: Story = {
   args: {
-    title: 'Este es un título muy largo que debería mostrar ellipsis cuando supere el ancho disponible',
+    title: 'This is a very long title that should show ellipsis when it exceeds the available width',
     children: (
       <div>
-        <p>Esta card demuestra cómo se comporta el título cuando es muy largo.</p>
-        <p>El texto se corta con ellipsis (...) y el título completo se muestra en hover.</p>
+        <p>This card demonstrates how the title behaves when it is very long.</p>
+        <p>Text is truncated with ellipsis (...) and the full title is shown on hover.</p>
       </div>
     ),
   },

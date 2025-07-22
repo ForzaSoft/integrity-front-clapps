@@ -26,55 +26,55 @@ type Story = StoryObj<typeof meta>;
 const defaultItems: ChecklistItem[] = [
   {
     id: 1,
-    text: 'Médico solicitante',
+    text: 'Requesting physician',
     status: 'completed',
   },
   {
     id: 2,
-    text: 'Prestaciones',
+    text: 'Services',
     status: 'completed',
   },
   {
     id: 3,
-    text: 'Orden médica',
+    text: 'Medical order',
     status: 'completed',
   },
   {
     id: 4,
-    text: 'Autorización de obra Social',
+    text: 'Insurance authorization',
     status: 'error',
   },
 ];
 
 export const Default: Story = {
   args: {
-    title: 'Estado de requisitos del turno:',
+    title: 'Appointment requirements status:',
     items: defaultItems,
   },
 };
 
 export const AllCompleted: Story = {
   args: {
-    title: 'Estado de requisitos del turno:',
+    title: 'Appointment requirements status:',
     items: [
       {
         id: 1,
-        text: 'Médico solicitante',
+        text: 'Requesting physician',
         status: 'completed',
       },
       {
         id: 2,
-        text: 'Prestaciones',
+        text: 'Services',
         status: 'completed',
       },
       {
         id: 3,
-        text: 'Orden médica',
+        text: 'Medical order',
         status: 'completed',
       },
       {
         id: 4,
-        text: 'Autorización de obra Social',
+        text: 'Insurance authorization',
         status: 'completed',
       },
     ],
@@ -83,26 +83,26 @@ export const AllCompleted: Story = {
 
 export const AllErrors: Story = {
   args: {
-    title: 'Estado de requisitos del turno:',
+    title: 'Appointment requirements status:',
     items: [
       {
         id: 1,
-        text: 'Médico solicitante',
+        text: 'Requesting physician',
         status: 'error',
       },
       {
         id: 2,
-        text: 'Prestaciones',
+        text: 'Services',
         status: 'error',
       },
       {
         id: 3,
-        text: 'Orden médica',
+        text: 'Medical order',
         status: 'error',
       },
       {
         id: 4,
-        text: 'Autorización de obra Social',
+        text: 'Insurance authorization',
         status: 'error',
       },
     ],
@@ -111,21 +111,21 @@ export const AllErrors: Story = {
 
 export const CustomTitle: Story = {
   args: {
-    title: 'Verificación de documentos:',
+    title: 'Document verification:',
     items: [
       {
         id: 1,
-        text: 'DNI del paciente',
+        text: 'Patient ID',
         status: 'completed',
       },
       {
         id: 2,
-        text: 'Obra social vigente',
+        text: 'Valid insurance',
         status: 'completed',
       },
       {
         id: 3,
-        text: 'Autorización previa',
+        text: 'Prior authorization',
         status: 'error',
       },
     ],
@@ -134,16 +134,16 @@ export const CustomTitle: Story = {
 
 export const ShortList: Story = {
   args: {
-    title: 'Requisitos básicos:',
+    title: 'Basic requirements:',
     items: [
       {
         id: 1,
-        text: 'Identificación',
+        text: 'Identification',
         status: 'completed',
       },
       {
         id: 2,
-        text: 'Consentimiento',
+        text: 'Consent',
         status: 'error',
       },
     ],
@@ -152,41 +152,41 @@ export const ShortList: Story = {
 
 export const LongList: Story = {
   args: {
-    title: 'Checklist completo de requisitos:',
+    title: 'Complete requirements checklist:',
     items: [
       {
         id: 1,
-        text: 'Médico solicitante',
+        text: 'Requesting physician',
         status: 'completed',
       },
       {
         id: 2,
-        text: 'Prestaciones autorizadas',
+        text: 'Authorized services',
         status: 'completed',
       },
       {
         id: 3,
-        text: 'Orden médica válida',
+        text: 'Valid medical order',
         status: 'completed',
       },
       {
         id: 4,
-        text: 'Autorización de obra Social',
+        text: 'Insurance authorization',
         status: 'error',
       },
       {
         id: 5,
-        text: 'Documentación del paciente',
+        text: 'Patient documentation',
         status: 'completed',
       },
       {
         id: 6,
-        text: 'Consentimiento informado',
+        text: 'Informed consent',
         status: 'error',
       },
       {
         id: 7,
-        text: 'Historia clínica actualizada',
+        text: 'Updated medical history',
         status: 'completed',
       },
     ],
@@ -195,11 +195,11 @@ export const LongList: Story = {
 
 export const SingleItem: Story = {
   args: {
-    title: 'Estado único:',
+    title: 'Single status:',
     items: [
       {
         id: 1,
-        text: 'Autorización pendiente',
+        text: 'Pending authorization',
         status: 'error',
       },
     ],

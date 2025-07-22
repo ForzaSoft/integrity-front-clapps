@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Componente de notificación/alerta con diferentes tipos y iconos correspondientes para mostrar mensajes importantes al usuario.',
+          'Notification/alert component with different types and corresponding icons to display important messages to the user.',
       },
     },
   },
@@ -19,11 +19,11 @@ const meta = {
     type: {
       control: { type: 'select' },
       options: ['success', 'error', 'warning', 'info'],
-      description: 'Tipo de banner que determina el color, icono y estilo',
+      description: 'Banner type that determines color, icon and style',
     },
     children: {
       control: { type: 'text' },
-      description: 'Contenido del mensaje del banner',
+      description: 'Banner message content',
     },
   },
 } satisfies Meta<typeof Banner>;
@@ -34,27 +34,27 @@ type Story = StoryObj<typeof meta>;
 export const Success: Story = {
   args: {
     type: 'success',
-    children: '¡Operación completada exitosamente! Los datos se han guardado correctamente.',
+    children: 'Operation completed successfully! The data has been saved correctly.',
   },
 };
 
 export const Error: Story = {
   args: {
     type: 'error',
-    children: 'Error: No se pudo completar la operación. Por favor, intente nuevamente.',
+    children: 'Error: Could not complete the operation. Please try again.',
   },
 };
 
 export const Warning: Story = {
   args: {
     type: 'warning',
-    children: 'Advertencia: Algunos campos están incompletos. Revise la información antes de continuar.',
+    children: 'Warning: Some fields are incomplete. Please review the information before continuing.',
   },
 };
 
 export const Info: Story = {
   args: {
     type: 'info',
-    children: 'Información: El sistema se actualizará en 5 minutos. Guarde su trabajo.',
+    children: 'Info: The system will update in 5 minutes. Please save your work.',
   },
 };

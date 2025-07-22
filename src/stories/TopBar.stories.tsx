@@ -9,7 +9,7 @@ const meta: Meta<typeof TopBar> = {
     docs: {
       description: {
         component:
-          'Barra superior del sistema médico INTEGRITY. Incluye título, fecha actual, notificaciones, búsqueda y acciones principales.',
+          'Top bar of the INTEGRITY medical system. Includes title, current date, notifications, search and main actions.',
       },
     },
   },
@@ -17,7 +17,7 @@ const meta: Meta<typeof TopBar> = {
   argTypes: {
     title: {
       control: { type: 'text' },
-      description: 'Título que se muestra en la barra superior',
+      description: 'Title displayed in the top bar',
     },
   },
 };
@@ -27,7 +27,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    title: 'Dashboard Médico',
+    title: 'Medical Dashboard',
   },
 };
 
@@ -52,8 +52,8 @@ export const InMedicalLayout: Story = {
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
         }}
       >
-        <h2>Contenido Principal</h2>
-        <p>Esta es una demostración de cómo se ve el TopBar en el contexto completo de la aplicación médica.</p>
+        <h2>Main Content</h2>
+        <p>This is a demonstration of how the TopBar looks in the complete medical application context.</p>
 
         <div
           style={{
@@ -71,7 +71,7 @@ export const InMedicalLayout: Story = {
               border: '1px solid #e9ecef',
             }}
           >
-            <h3>Turnos de Hoy</h3>
+            <h3>Today's Appointments</h3>
             <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#0066cc' }}>24</p>
           </div>
 
@@ -83,7 +83,7 @@ export const InMedicalLayout: Story = {
               border: '1px solid #e9ecef',
             }}
           >
-            <h3>Pacientes Atendidos</h3>
+            <h3>Patients Seen</h3>
             <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#28a745' }}>18</p>
           </div>
 
@@ -95,7 +95,7 @@ export const InMedicalLayout: Story = {
               border: '1px solid #e9ecef',
             }}
           >
-            <h3>En Espera</h3>
+            <h3>Waiting</h3>
             <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ffc107' }}>6</p>
           </div>
 
@@ -107,7 +107,7 @@ export const InMedicalLayout: Story = {
               border: '1px solid #e9ecef',
             }}
           >
-            <h3>Urgentes</h3>
+            <h3>Urgent</h3>
             <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#dc3545' }}>2</p>
           </div>
         </div>
@@ -115,7 +115,7 @@ export const InMedicalLayout: Story = {
     </div>
   ),
   args: {
-    title: 'Dashboard Médico INTEGRITY',
+    title: 'INTEGRITY Medical Dashboard',
   },
 };
 
@@ -149,7 +149,7 @@ export const WithCustomContent: Story = {
             </div>
             <div>
               <div style={{ fontSize: '18px', fontWeight: 'bold' }}>INTEGRITY Medical System</div>
-              <div style={{ fontSize: '12px', color: '#666' }}>Sistema de Gestión Médica Integral</div>
+              <div style={{ fontSize: '12px', color: '#666' }}>Comprehensive Medical Management System</div>
             </div>
           </div>
         }
@@ -172,10 +172,10 @@ export const WithCustomContent: Story = {
           }}
         >
           {[
-            { title: 'Nuevo Turno', desc: 'Agendar nueva cita', color: '#28a745' },
-            { title: 'Buscar Paciente', desc: 'Encontrar información', color: '#17a2b8' },
-            { title: 'Ver Agenda', desc: 'Consultar horarios', color: '#ffc107' },
-            { title: 'Notificaciones', desc: '3 nuevas alertas', color: '#dc3545' },
+            { title: 'New Appointment', desc: 'Schedule new appointment', color: '#28a745' },
+            { title: 'Search Patient', desc: 'Find information', color: '#17a2b8' },
+            { title: 'View Schedule', desc: 'Check schedules', color: '#ffc107' },
+            { title: 'Notifications', desc: '3 new alerts', color: '#dc3545' },
           ].map((item, index) => (
             <div
               key={index}
@@ -212,9 +212,9 @@ export const ResponsiveDemo: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       <div>
-        <h4>Pantalla Completa (Desktop)</h4>
+        <h4>Full Screen (Desktop)</h4>
         <div style={{ width: '100%', border: '1px solid #ccc' }}>
-          <TopBar title="Dashboard Médico - Vista Desktop" />
+          <TopBar title="Medical Dashboard - Desktop View" />
         </div>
       </div>
 

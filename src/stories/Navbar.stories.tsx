@@ -9,7 +9,7 @@ const meta: Meta<typeof Navbar> = {
     docs: {
       description: {
         component:
-          'Barra de navegación lateral con iconos de funciones principales del sistema médico. Incluye botones para nuevo turno, dashboard, agendas, pacientes, parametrización y perfil de usuario.',
+          'Side navigation bar with icons for main medical system functions. Includes buttons for new appointment, dashboard, schedules, patients, parameterization and user profile.',
       },
     },
   },
@@ -46,18 +46,18 @@ export const InMedicalApp: Story = {
           backgroundColor: '#f5f5f5',
         }}
       >
-        <h1>Sistema Médico INTEGRITY</h1>
-        <p>Esta es la barra de navegación lateral del sistema médico.</p>
+        <h1>INTEGRITY Medical System</h1>
+        <p>This is the medical system's side navigation bar.</p>
         <div style={{ marginTop: '2rem' }}>
-          <h3>Funciones disponibles:</h3>
+          <h3>Available functions:</h3>
           <ul>
-            <li>Nuevo Turno - Crear nuevas citas médicas</li>
-            <li>Dashboard - Vista general del sistema</li>
-            <li>Agendas - Gestión de agendas médicas</li>
-            <li>Pacientes - Administración de pacientes</li>
-            <li>Parametrización - Configuración del sistema</li>
-            <li>Perfil de Usuario - Configuración personal</li>
-            <li>Log out - Cerrar sesión</li>
+            <li>New Appointment - Create new medical appointments</li>
+            <li>Dashboard - System overview</li>
+            <li>Schedules - Medical schedule management</li>
+            <li>Patients - Patient administration</li>
+            <li>Parameterization - System configuration</li>
+            <li>User Profile - Personal settings</li>
+            <li>Log out - Sign out</li>
           </ul>
         </div>
       </div>
@@ -94,15 +94,15 @@ export const WithActiveStates: Story = {
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
         }}
       >
-        <h4>Navegación del Sistema Médico</h4>
-        <p>Los botones permiten navegar entre:</p>
+        <h4>Medical System Navigation</h4>
+        <p>Buttons allow navigation between:</p>
         <ul style={{ fontSize: '14px', lineHeight: '1.4' }}>
-          <li>Gestión de turnos y citas</li>
-          <li>Dashboard principal</li>
-          <li>Agendas activas</li>
-          <li>Base de datos de pacientes</li>
-          <li>Configuración del sistema</li>
-          <li>Perfil y configuración personal</li>
+          <li>Appointment and schedule management</li>
+          <li>Main dashboard</li>
+          <li>Active schedules</li>
+          <li>Patient database</li>
+          <li>System configuration</li>
+          <li>Profile and personal settings</li>
         </ul>
       </div>
     </div>
@@ -137,7 +137,7 @@ export const InFullLayout: Story = {
             fontWeight: 'bold',
           }}
         >
-          Sistema INTEGRITY - Gestión Médica
+          INTEGRITY System - Medical Management
         </header>
 
         {/* Main content */}
@@ -157,8 +157,8 @@ export const InFullLayout: Story = {
               height: '100%',
             }}
           >
-            <h2>Dashboard Principal</h2>
-            <p>Contenido principal de la aplicación médica.</p>
+            <h2>Main Dashboard</h2>
+            <p>Main content of the medical application.</p>
             <div style={{ marginTop: '2rem' }}>
               <div
                 style={{
@@ -175,7 +175,7 @@ export const InFullLayout: Story = {
                     textAlign: 'center',
                   }}
                 >
-                  <h3>Turnos del Día</h3>
+                  <h3>Today's Appointments</h3>
                   <p style={{ fontSize: '24px', margin: '0.5rem 0' }}>24</p>
                 </div>
                 <div
@@ -186,7 +186,7 @@ export const InFullLayout: Story = {
                     textAlign: 'center',
                   }}
                 >
-                  <h3>Pacientes Atendidos</h3>
+                  <h3>Patients Seen</h3>
                   <p style={{ fontSize: '24px', margin: '0.5rem 0' }}>18</p>
                 </div>
                 <div
@@ -197,7 +197,7 @@ export const InFullLayout: Story = {
                     textAlign: 'center',
                   }}
                 >
-                  <h3>En Espera</h3>
+                  <h3>Waiting</h3>
                   <p style={{ fontSize: '24px', margin: '0.5rem 0' }}>6</p>
                 </div>
               </div>

@@ -10,7 +10,7 @@ const meta: Meta<typeof Toggle> = {
     docs: {
       description: {
         component:
-          'Componente Toggle/Switch personalizado basado en checkbox HTML. Incluye animaciones suaves y diseño moderno.',
+          'Custom Toggle/Switch component based on HTML checkbox. Includes smooth animations and modern design.',
       },
     },
   },
@@ -18,11 +18,11 @@ const meta: Meta<typeof Toggle> = {
   argTypes: {
     checked: {
       control: { type: 'boolean' },
-      description: 'Estado del toggle',
+      description: 'Toggle state',
     },
     disabled: {
       control: { type: 'boolean' },
-      description: 'Estado deshabilitado',
+      description: 'Disabled state',
     },
   },
 };
@@ -62,9 +62,9 @@ export const Interactive: Story = {
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
-        <h4>Toggle Interactivo</h4>
+        <h4>Interactive Toggle</h4>
         <Toggle checked={isChecked} onChange={(e) => setIsChecked(e.target.checked)} />
-        <p style={{ fontSize: '14px', color: '#666' }}>Estado: {isChecked ? 'Activado' : 'Desactivado'}</p>
+        <p style={{ fontSize: '14px', color: '#666' }}>State: {isChecked ? 'Enabled' : 'Disabled'}</p>
       </div>
     );
   },
@@ -97,14 +97,14 @@ export const MedicalSettings: Story = {
           border: '1px solid #e9ecef',
         }}
       >
-        <h3 style={{ margin: '0 0 1.5rem 0' }}>Configuraciones del Sistema Médico</h3>
+        <h3 style={{ margin: '0 0 1.5rem 0' }}>Medical System Settings</h3>
 
         <div style={{ display: 'grid', gap: '1rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <strong>Notificaciones</strong>
+              <strong>Notifications</strong>
               <p style={{ margin: '0.25rem 0 0 0', fontSize: '14px', color: '#666' }}>
-                Recibir notificaciones generales del sistema
+                Receive general system notifications
               </p>
             </div>
             <Toggle checked={settings.notifications} onChange={() => handleToggle('notifications')} />
@@ -112,29 +112,25 @@ export const MedicalSettings: Story = {
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <strong>Guardado Automático</strong>
-              <p style={{ margin: '0.25rem 0 0 0', fontSize: '14px', color: '#666' }}>
-                Guardar cambios automáticamente
-              </p>
+              <strong>Auto Save</strong>
+              <p style={{ margin: '0.25rem 0 0 0', fontSize: '14px', color: '#666' }}>Save changes automatically</p>
             </div>
             <Toggle checked={settings.autoSave} onChange={() => handleToggle('autoSave')} />
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <strong>Alertas Urgentes</strong>
-              <p style={{ margin: '0.25rem 0 0 0', fontSize: '14px', color: '#666' }}>
-                Notificaciones para casos urgentes
-              </p>
+              <strong>Urgent Alerts</strong>
+              <p style={{ margin: '0.25rem 0 0 0', fontSize: '14px', color: '#666' }}>Notifications for urgent cases</p>
             </div>
             <Toggle checked={settings.urgentAlerts} onChange={() => handleToggle('urgentAlerts')} />
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <strong>Recordatorios por Email</strong>
+              <strong>Email Reminders</strong>
               <p style={{ margin: '0.25rem 0 0 0', fontSize: '14px', color: '#666' }}>
-                Enviar recordatorios de citas por email
+                Send appointment reminders via email
               </p>
             </div>
             <Toggle checked={settings.emailReminders} onChange={() => handleToggle('emailReminders')} />
@@ -142,8 +138,8 @@ export const MedicalSettings: Story = {
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <strong>Notificaciones SMS</strong>
-              <p style={{ margin: '0.25rem 0 0 0', fontSize: '14px', color: '#666' }}>Enviar notificaciones por SMS</p>
+              <strong>SMS Notifications</strong>
+              <p style={{ margin: '0.25rem 0 0 0', fontSize: '14px', color: '#666' }}>Send SMS notifications</p>
             </div>
             <Toggle checked={settings.smsNotifications} onChange={() => handleToggle('smsNotifications')} />
           </div>
@@ -158,11 +154,11 @@ export const MedicalSettings: Story = {
             fontSize: '14px',
           }}
         >
-          <strong>Configuración Actual:</strong>
+          <strong>Current Settings:</strong>
           <ul style={{ margin: '0.5rem 0 0 0', paddingLeft: '1.5rem' }}>
             {Object.entries(settings).map(([key, value]) => (
               <li key={key}>
-                {key}: {value ? '✅ Activado' : '❌ Desactivado'}
+                {key}: {value ? '✅ Enabled' : '❌ Disabled'}
               </li>
             ))}
           </ul>
@@ -183,27 +179,27 @@ export const AllStates: Story = {
       }}
     >
       <div style={{ textAlign: 'center' }}>
-        <h4>Desactivado</h4>
+        <h4>Disabled</h4>
         <Toggle checked={false} />
-        <p style={{ fontSize: '12px', color: '#666', marginTop: '0.5rem' }}>Estado: OFF</p>
+        <p style={{ fontSize: '12px', color: '#666', marginTop: '0.5rem' }}>State: OFF</p>
       </div>
 
       <div style={{ textAlign: 'center' }}>
-        <h4>Activado</h4>
+        <h4>Enabled</h4>
         <Toggle checked={true} />
-        <p style={{ fontSize: '12px', color: '#666', marginTop: '0.5rem' }}>Estado: ON</p>
+        <p style={{ fontSize: '12px', color: '#666', marginTop: '0.5rem' }}>State: ON</p>
       </div>
 
       <div style={{ textAlign: 'center' }}>
-        <h4>Deshabilitado OFF</h4>
+        <h4>Disabled OFF</h4>
         <Toggle checked={false} disabled />
-        <p style={{ fontSize: '12px', color: '#666', marginTop: '0.5rem' }}>Deshabilitado</p>
+        <p style={{ fontSize: '12px', color: '#666', marginTop: '0.5rem' }}>Disabled</p>
       </div>
 
       <div style={{ textAlign: 'center' }}>
-        <h4>Deshabilitado ON</h4>
+        <h4>Disabled ON</h4>
         <Toggle checked={true} disabled />
-        <p style={{ fontSize: '12px', color: '#666', marginTop: '0.5rem' }}>Deshabilitado</p>
+        <p style={{ fontSize: '12px', color: '#666', marginTop: '0.5rem' }}>Disabled</p>
       </div>
     </div>
   ),

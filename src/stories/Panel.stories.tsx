@@ -12,7 +12,7 @@ const meta: Meta<typeof Panel> = {
     docs: {
       description: {
         component:
-          'Panel lateral deslizable que se abre desde la derecha. Utiliza useImperativeHandle para controlar su apertura y cierre mediante ref. Incluye header, contenido y footer opcional.',
+          'Sliding side panel that opens from the right. Uses useImperativeHandle to control opening and closing via ref. Includes header, content and optional footer.',
       },
     },
   },
@@ -30,28 +30,28 @@ export const Basic: Story = {
       <div style={{ position: 'relative', zIndex: 10000 }}>
         <Panel
           ref={panelRef}
-          header="Panel Básico"
+          header="Basic Panel"
           footer={
             <>
               <Button onClick={() => panelRef.current?.close()} variant="success">
-                Aceptar
+                Accept
               </Button>
               <Button onClick={() => panelRef.current?.close()} variant="danger">
-                Cancelar
+                Cancel
               </Button>
             </>
           }
         >
-          <p>Este es el contenido del panel básico.</p>
+          <p>This is the basic panel content.</p>
         </Panel>
       </div>
     );
 
     return (
       <div style={{ padding: '2rem', height: '100vh', backgroundColor: '#f5f5f5' }}>
-        <h1>Panel Básico</h1>
+        <h1>Basic Panel</h1>
         <Button onClick={() => panelRef.current?.open()} variant="primary">
-          Abrir Panel
+          Open Panel
         </Button>
         {typeof document !== 'undefined' && createPortal(panelContent, document.body)}
       </div>
@@ -67,10 +67,10 @@ export const WithLongContent: Story = {
       <div style={{ position: 'relative', zIndex: 10000 }}>
         <Panel
           ref={panelRef}
-          header="Historial Médico"
+          header="Medical History"
           footer={
             <Button onClick={() => panelRef.current?.close()} variant="primary">
-              Cerrar
+              Close
             </Button>
           }
         >
@@ -87,14 +87,14 @@ export const WithLongContent: Story = {
                 }}
               >
                 <h4 style={{ margin: '0 0 0.5rem 0', color: '#0066cc' }}>
-                  Consulta #{i + 1} - {new Date(2024, 0, i + 1).toLocaleDateString('es-ES')}
+                  Appointment #{i + 1} - {new Date(2024, 0, i + 1).toLocaleDateString('en-US')}
                 </h4>
                 <p style={{ margin: '0 0 0.5rem 0' }}>
-                  <strong>Especialidad:</strong>{' '}
-                  {i % 3 === 0 ? 'Cardiología' : i % 3 === 1 ? 'Dermatología' : 'Clínica Médica'}
+                  <strong>Specialty:</strong>{' '}
+                  {i % 3 === 0 ? 'Cardiology' : i % 3 === 1 ? 'Dermatology' : 'General Medicine'}
                 </p>
                 <p style={{ margin: '0', fontSize: '14px', color: '#666' }}>
-                  Control rutinario - Sin novedades significativas.
+                  Routine checkup - No significant findings.
                 </p>
               </div>
             ))}
@@ -105,9 +105,9 @@ export const WithLongContent: Story = {
 
     return (
       <div style={{ padding: '2rem', height: '100vh', backgroundColor: '#f5f5f5' }}>
-        <h1>Panel con Scroll</h1>
+        <h1>Panel with Scroll</h1>
         <Button onClick={() => panelRef.current?.open()} variant="primary">
-          Abrir
+          Open
         </Button>
         {typeof document !== 'undefined' && createPortal(panelContent, document.body)}
       </div>

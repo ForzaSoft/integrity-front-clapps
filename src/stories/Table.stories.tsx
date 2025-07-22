@@ -15,41 +15,41 @@ interface Usuario {
 const usuariosEjemplo: Usuario[] = [
   {
     id: 1,
-    nombre: 'Juan Pérez',
-    email: 'juan.perez@ejemplo.com',
-    rol: 'Administrador',
+    nombre: 'John Smith',
+    email: 'john.smith@example.com',
+    rol: 'Administrator',
     activo: true,
     fechaRegistro: '2024-01-15',
   },
   {
     id: 2,
-    nombre: 'María García',
-    email: 'maria.garcia@ejemplo.com',
-    rol: 'Médico',
+    nombre: 'Maria Garcia',
+    email: 'maria.garcia@example.com',
+    rol: 'Doctor',
     activo: true,
     fechaRegistro: '2024-02-20',
   },
   {
     id: 3,
-    nombre: 'Carlos López',
-    email: 'carlos.lopez@ejemplo.com',
-    rol: 'Recepcionista',
+    nombre: 'Carlos Lopez',
+    email: 'carlos.lopez@example.com',
+    rol: 'Receptionist',
     activo: false,
     fechaRegistro: '2024-01-08',
   },
   {
     id: 4,
-    nombre: 'Ana Martínez',
-    email: 'ana.martinez@ejemplo.com',
-    rol: 'Médico',
+    nombre: 'Ana Martinez',
+    email: 'ana.martinez@example.com',
+    rol: 'Doctor',
     activo: true,
     fechaRegistro: '2024-03-10',
   },
   {
     id: 5,
     nombre: 'Roberto Silva',
-    email: 'roberto.silva@ejemplo.com',
-    rol: 'Administrador',
+    email: 'roberto.silva@example.com',
+    rol: 'Administrator',
     activo: false,
     fechaRegistro: '2024-02-05',
   },
@@ -62,7 +62,7 @@ const meta = {
     layout: 'padded',
     docs: {
       description: {
-        component: 'Componente de tabla construido con TanStack Table.',
+        component: 'Table component built with TanStack Table.',
       },
     },
   },
@@ -76,28 +76,28 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-  name: 'Básico',
+  name: 'Basic',
   args: {
     headers: [
       { title: 'ID', value: 'id' },
-      { title: 'Nombre', value: 'nombre' },
+      { title: 'Name', value: 'nombre' },
       { title: 'Email', value: 'email' },
-      { title: 'Rol', value: 'rol' },
+      { title: 'Role', value: 'rol' },
     ],
     items: usuariosEjemplo.slice(0, 3),
   },
 };
 
 export const WithGlobalFilter: Story = {
-  name: 'Con filtro global',
+  name: 'With Global Filter',
   args: {
     headers: [
       { title: 'ID', value: 'id' },
-      { title: 'Nombre', value: 'nombre' },
+      { title: 'Name', value: 'nombre' },
       { title: 'Email', value: 'email' },
-      { title: 'Rol', value: 'rol' },
+      { title: 'Role', value: 'rol' },
       {
-        title: 'Estado',
+        title: 'Status',
         renderer: (usuario: Usuario) => (
           <span
             style={{
@@ -109,7 +109,7 @@ export const WithGlobalFilter: Story = {
               backgroundColor: usuario.activo ? '#f0f9ff' : '#fef2f2',
             }}
           >
-            {usuario.activo ? 'Activo' : 'Inactivo'}
+            {usuario.activo ? 'Active' : 'Inactive'}
           </span>
         ),
         align: 'center',
@@ -123,7 +123,7 @@ export const WithGlobalFilter: Story = {
     docs: {
       description: {
         story:
-          'Tabla con filtro global en el header (columna derecha). El filtro busca en todas las columnas searchables. Prueba escribir "María", "Médico" o "gmail".',
+          'Table with global filter in the header (right column). The filter searches across all searchable columns. Try typing "Maria", "Doctor" or "gmail".',
       },
     },
   },

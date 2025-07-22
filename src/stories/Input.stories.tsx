@@ -10,7 +10,7 @@ const meta = {
     layout: 'padded',
     docs: {
       description: {
-        component: 'Componente de input con soporte para íconos y modo invertido.',
+        component: 'Input component with support for icons and inverted mode.',
       },
     },
   },
@@ -35,17 +35,17 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-  name: 'Básico',
+  name: 'Basic',
   args: {
-    placeholder: 'Escribe aquí...',
+    placeholder: 'Type here...',
     variantSize: 'md',
   },
 };
 
 export const WithIcon: Story = {
-  name: 'Con ícono de búsqueda',
+  name: 'With Search Icon',
   args: {
-    placeholder: 'Buscar...',
+    placeholder: 'Search...',
     variantSize: 'md',
     icon: BuscarIcon,
     iconPosition: 'left',
@@ -53,9 +53,9 @@ export const WithIcon: Story = {
 };
 
 export const WithIconRight: Story = {
-  name: 'Con ícono a la derecha',
+  name: 'With Icon Right',
   args: {
-    placeholder: 'Buscar...',
+    placeholder: 'Search...',
     variantSize: 'md',
     icon: BuscarIcon,
     iconPosition: 'right',
@@ -63,74 +63,72 @@ export const WithIconRight: Story = {
 };
 
 export const OutlinedWithLabel: Story = {
-  name: 'Outlined con label (nuevo estilo)',
+  name: 'Outlined with Label (new style)',
   args: {
     placeholder: '1342',
     variantSize: 'md',
     appearance: 'outlined',
-    label: 'Nro. Liquidación',
+    label: 'Invoice Number',
   },
 };
 
 export const OutlinedBasic: Story = {
-  name: 'Outlined básico',
+  name: 'Basic Outlined',
   args: {
-    placeholder: 'Escribe aquí...',
+    placeholder: 'Type here...',
     variantSize: 'md',
     appearance: 'outlined',
   },
 };
 
 export const OutlinedWithIcon: Story = {
-  name: 'Outlined con ícono',
+  name: 'Outlined with Icon',
   args: {
-    placeholder: 'Buscar...',
+    placeholder: 'Search...',
     variantSize: 'md',
     appearance: 'outlined',
     icon: BuscarIcon,
     iconPosition: 'left',
-    label: 'Búsqueda',
+    label: 'Search',
   },
 };
 
 export const UnderlineStyle: Story = {
-  name: 'Underline (estilo anterior)',
+  name: 'Underline (previous style)',
   args: {
-    placeholder: 'Estilo anterior...',
+    placeholder: 'Previous style...',
     variantSize: 'md',
     appearance: 'underline',
   },
 };
 
 export const Comparison: Story = {
-  name: 'Comparación de estilos',
+  name: 'Style Comparison',
   render: () => (
     <div style={{ display: 'flex', gap: '20px', flexDirection: 'column' }}>
       <div>
-        <h4 style={{ marginBottom: '10px', fontSize: '14px', color: '#374151' }}>
-          Nuevo estilo (Outlined) - Por defecto
-        </h4>
+        <h4 style={{ marginBottom: '10px', fontSize: '14px', color: '#374151' }}>New Style (Outlined) - Default</h4>
         <div style={{ display: 'flex', gap: '15px', alignItems: 'end' }}>
-          <Input placeholder="Sin label" variantSize="md" appearance="outlined" />
-          <Input placeholder="1342" variantSize="md" appearance="outlined" label="Nro. Liquidación" />
-          <Input placeholder="Buscar..." variantSize="md" appearance="outlined" icon={BuscarIcon} label="Búsqueda" />
+          <Input placeholder="No label" variantSize="md" appearance="outlined" />
+          <Input placeholder="1342" variantSize="md" appearance="outlined" label="Invoice Number" />
+          <Input placeholder="Search..." variantSize="md" appearance="outlined" icon={BuscarIcon} label="Search" />
         </div>
       </div>
 
       <div>
-        <h4 style={{ marginBottom: '10px', fontSize: '14px', color: '#374151' }}>Estilo anterior (Underline)</h4>
+        <h4 style={{ marginBottom: '10px', fontSize: '14px', color: '#374151' }}>Previous Style (Underline)</h4>
         <div style={{ display: 'flex', gap: '15px', alignItems: 'end' }}>
-          <Input placeholder="Texto..." variantSize="md" appearance="underline" />
-          <Input placeholder="Buscar..." variantSize="md" appearance="underline" icon={BuscarIcon} />
+          <Input placeholder="Text..." variantSize="md" appearance="underline" />
+          <Input placeholder="Search..." variantSize="md" appearance="underline" icon={BuscarIcon} />
         </div>
       </div>
 
       <div>
-        <h4 style={{ marginBottom: '10px', fontSize: '14px', color: '#374151' }}>Tamaños (Outlined)</h4>
+        <h4 style={{ marginBottom: '10px', fontSize: '14px', color: '#374151' }}>Sizes (Outlined)</h4>
         <div style={{ display: 'flex', gap: '15px', alignItems: 'end' }}>
-          <Input placeholder="Pequeño" variantSize="sm" appearance="outlined" label="SM" />
-          <Input placeholder="Mediano" variantSize="md" appearance="outlined" label="MD" />
-          <Input placeholder="Grande" variantSize="lg" appearance="outlined" label="LG" />
+          <Input placeholder="Small" variantSize="sm" appearance="outlined" label="SM" />
+          <Input placeholder="Medium" variantSize="md" appearance="outlined" label="MD" />
+          <Input placeholder="Large" variantSize="lg" appearance="outlined" label="LG" />
         </div>
       </div>
     </div>

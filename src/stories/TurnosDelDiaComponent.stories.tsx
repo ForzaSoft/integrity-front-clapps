@@ -8,7 +8,7 @@ const meta: Meta<typeof TurnosDelDiaComponent> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Componente que muestra estadísticas de turnos del día con indicadores visuales.',
+        component: 'Component that displays daily appointment statistics with visual indicators.',
       },
     },
   },
@@ -16,7 +16,7 @@ const meta: Meta<typeof TurnosDelDiaComponent> = {
   argTypes: {
     values: {
       control: { type: 'object' },
-      description: 'Objeto con estadísticas de turnos',
+      description: 'Object with appointment statistics',
     },
   },
 };

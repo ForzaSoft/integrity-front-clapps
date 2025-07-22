@@ -9,7 +9,7 @@ const meta: Meta<typeof StateComponent> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Componente que muestra el estado de los turnos médicos con colores específicos para cada estado.',
+        component: 'Component that displays the status of medical appointments with specific colors for each state.',
       },
     },
   },
@@ -41,7 +41,7 @@ export const AllStates: Story = {
         padding: '1rem',
       }}
     >
-      <h3>Estados de Turnos Médicos</h3>
+      <h3>Medical Appointment States</h3>
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>

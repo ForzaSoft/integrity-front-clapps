@@ -17,7 +17,7 @@ const meta = {
     layout: 'fullscreen',
     docs: {
       description: {
-        component: 'Componente de modal para mostrar contenido emergente.',
+        component: 'Modal component for displaying popup content.',
       },
     },
   },
@@ -50,7 +50,7 @@ const ModalWrapper = ({
       <div>
         {children}
         <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-          <Button onClick={handleClose}>Cerrar</Button>
+          <Button onClick={handleClose}>Close</Button>
         </div>
       </div>
     </Modal>
@@ -58,7 +58,7 @@ const ModalWrapper = ({
 
   return (
     <div style={{ padding: '20px' }}>
-      <Button onClick={handleOpen}>Abrir Modal</Button>
+      <Button onClick={handleOpen}>Open Modal</Button>
       {typeof document !== 'undefined' && createPortal(modalContent, document.body)}
     </div>
   );
@@ -66,8 +66,8 @@ const ModalWrapper = ({
 
 export const Basic = {
   render: () => (
-    <ModalWrapper title="Modal Básico">
-      <p>Este es el contenido básico del modal.</p>
+    <ModalWrapper title="Basic Modal">
+      <p>This is the basic modal content.</p>
     </ModalWrapper>
   ),
 };
@@ -85,16 +85,16 @@ export const Confirmation = {
     };
 
     const modalContent = (
-      <Modal ref={modalRef} title="Confirmar Acción">
+      <Modal ref={modalRef} title="Confirm Action">
         <div>
-          <p>¿Está seguro que desea cancelar este turno?</p>
-          <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '0.5rem' }}>Esta acción no se puede deshacer.</p>
+          <p>Are you sure you want to cancel this appointment?</p>
+          <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '0.5rem' }}>This action cannot be undone.</p>
           <div style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
             <Button variant="success" onClick={handleClose}>
-              Confirmar
+              Confirm
             </Button>
             <Button variant="danger" onClick={handleClose}>
-              Cancelar
+              Cancel
             </Button>
           </div>
         </div>
@@ -103,7 +103,7 @@ export const Confirmation = {
 
     return (
       <div style={{ padding: '20px' }}>
-        <Button onClick={handleOpen}>Abrir Modal</Button>
+        <Button onClick={handleOpen}>Open Modal</Button>
         {typeof document !== 'undefined' && createPortal(modalContent, document.body)}
       </div>
     );

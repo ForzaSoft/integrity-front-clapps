@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Componente de calendario simplificado para mostrar fechas y seleccionar rangos. Ahora separado del componente de navegación para mayor flexibilidad.',
+          'Simplified calendar component for displaying dates and selecting ranges. Now separated from navigation component for greater flexibility.',
       },
     },
   },
@@ -21,7 +21,7 @@ const meta = {
   argTypes: {
     points: {
       control: { type: 'object' },
-      description: 'Array de fechas que se marcarán con un punto indicador',
+      description: 'Array of dates that will be marked with an indicator dot',
     },
   },
   args: {
@@ -46,23 +46,23 @@ export const WithDateRange = {
     const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
 
     const formatDateRange = (range: DateRange | undefined) => {
-      if (!range?.from) return 'Ninguna fecha seleccionada';
+      if (!range?.from) return 'No date selected';
 
-      const from = range.from.toLocaleDateString('es-ES', {
+      const from = range.from.toLocaleDateString('en-US', {
         day: 'numeric',
         month: 'long',
         year: 'numeric',
       });
 
-      if (!range.to) return `Desde: ${from}`;
+      if (!range.to) return `From: ${from}`;
 
-      const to = range.to.toLocaleDateString('es-ES', {
+      const to = range.to.toLocaleDateString('en-US', {
         day: 'numeric',
         month: 'long',
         year: 'numeric',
       });
 
-      return `Desde: ${from} - Hasta: ${to}`;
+      return `From: ${from} - To: ${to}`;
     };
 
     const createExtendedRange = () => {
@@ -98,9 +98,11 @@ export const WithDateRange = {
             to={dateRange.end}
             month={currentMonth}
             selected={selectedRange}
-            onSelect={(range: DateRange | undefined) => {
-              setSelectedRange(range);
-              console.log('Rango seleccionado:', range);
+            onSelect={(range) => {
+              if (range && typeof range === 'object' && ('from' in range || 'to' in range)) {
+                setSelectedRange(range as DateRange);
+                console.log('Selected range:', range);
+              }
             }}
           />
         </div>
@@ -114,18 +116,18 @@ export const WithDateRange = {
               border: '1px solid #e2e8f0',
             }}
           >
-            <h4 style={{ margin: '0 0 16px 0', color: '#475569' }}>📅 Rango Seleccionado</h4>
+            <h4 style={{ margin: '0 0 16px 0', color: '#475569' }}>📅 Selected Range</h4>
 
             <div style={{ marginBottom: '16px' }}>
-              <strong>Mes activo:</strong>
+              <strong>Active month:</strong>
               <br />
               <span style={{ color: '#1e40af', fontSize: '16px' }}>
-                {currentMonth.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}
+                {currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
               </span>
             </div>
 
             <div style={{ marginBottom: '16px' }}>
-              <strong>Rango de fechas:</strong>
+              <strong>Date range:</strong>
               <br />
               <span style={{ color: '#1e40af', fontSize: '16px' }}>{formatDateRange(selectedRange)}</span>
             </div>
@@ -149,9 +151,9 @@ export const WithDateRange = {
                 >
                   <span style={{ fontSize: '18px' }}>✅</span>
                   <span style={{ fontWeight: '600' }}>
-                    Rango de{' '}
+                    Range of{' '}
                     {Math.ceil((selectedRange.to.getTime() - selectedRange.from.getTime()) / (1000 * 60 * 60 * 24)) + 1}{' '}
-                    días seleccionado
+                    days selected
                   </span>
                 </div>
               </div>
@@ -159,13 +161,13 @@ export const WithDateRange = {
 
             <div style={{ fontSize: '14px', color: '#64748b' }}>
               <p style={{ margin: '0 0 8px 0' }}>
-                <strong>Instrucciones:</strong>
+                <strong>Instructions:</strong>
               </p>
               <ul style={{ margin: 0, paddingLeft: '20px' }}>
-                <li>Usa los dropdowns para cambiar año/mes</li>
-                <li>Haz clic en fechas del calendario para seleccionar rangos</li>
-                <li>Los puntos azules indican fechas especiales</li>
-                <li>Los botones de navegación (←, hoy, →) cambian la vista del mes</li>
+                <li>Use dropdowns to change year/month</li>
+                <li>Click calendar dates to select ranges</li>
+                <li>Blue dots indicate special dates</li>
+                <li>Navigation buttons (←, today, →) change the month view</li>
               </ul>
             </div>
           </div>

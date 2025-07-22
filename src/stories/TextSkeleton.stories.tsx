@@ -9,7 +9,7 @@ const meta: Meta<typeof TextSkeleton> = {
     docs: {
       description: {
         component:
-          'Componente skeleton para mostrar placeholders animados mientras se cargan los datos. Utiliza styled-components con animación shimmer.',
+          'Skeleton component to show animated placeholders while data loads. Uses styled-components with shimmer animation.',
       },
     },
   },
@@ -17,11 +17,11 @@ const meta: Meta<typeof TextSkeleton> = {
   argTypes: {
     width: {
       control: { type: 'number' },
-      description: 'Ancho del skeleton en píxeles',
+      description: 'Skeleton width in pixels',
     },
     height: {
       control: { type: 'number' },
-      description: 'Alto del skeleton en píxeles',
+      description: 'Skeleton height in pixels',
     },
   },
 };
@@ -76,17 +76,17 @@ export const DifferentSizes: Story = {
       }}
     >
       <div>
-        <h4 style={{ margin: '0 0 0.5rem 0' }}>Título Principal</h4>
+        <h4 style={{ margin: '0 0 0.5rem 0' }}>Main Title</h4>
         <TextSkeleton width={300} height={32} />
       </div>
 
       <div>
-        <h4 style={{ margin: '0 0 0.5rem 0' }}>Subtítulo</h4>
+        <h4 style={{ margin: '0 0 0.5rem 0' }}>Subtitle</h4>
         <TextSkeleton width={200} height={24} />
       </div>
 
       <div>
-        <h4 style={{ margin: '0 0 0.5rem 0' }}>Párrafos</h4>
+        <h4 style={{ margin: '0 0 0.5rem 0' }}>Paragraphs</h4>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <TextSkeleton width={400} height={16} />
           <TextSkeleton width={380} height={16} />
@@ -95,7 +95,7 @@ export const DifferentSizes: Story = {
       </div>
 
       <div>
-        <h4 style={{ margin: '0 0 0.5rem 0' }}>Etiquetas</h4>
+        <h4 style={{ margin: '0 0 0.5rem 0' }}>Labels</h4>
         <div style={{ display: 'flex', gap: '0.5rem' }}>
           <TextSkeleton width={80} height={14} />
           <TextSkeleton width={60} height={14} />
@@ -117,7 +117,7 @@ export const InPatientCard: Story = {
         border: '1px solid #e9ecef',
       }}
     >
-      <h3 style={{ margin: '0 0 1.5rem 0' }}>Cargando Información del Paciente</h3>
+      <h3 style={{ margin: '0 0 1.5rem 0' }}>Loading Patient Information</h3>
 
       <div
         style={{
@@ -129,27 +129,27 @@ export const InPatientCard: Story = {
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div>
-            <div style={{ fontSize: '12px', color: '#666', marginBottom: '0.5rem' }}>Nombre:</div>
+            <div style={{ fontSize: '12px', color: '#666', marginBottom: '0.5rem' }}>Name:</div>
             <TextSkeleton width={200} height={20} />
           </div>
 
           <div>
-            <div style={{ fontSize: '12px', color: '#666', marginBottom: '0.5rem' }}>DNI:</div>
+            <div style={{ fontSize: '12px', color: '#666', marginBottom: '0.5rem' }}>ID:</div>
             <TextSkeleton width={120} height={18} />
           </div>
 
           <div>
-            <div style={{ fontSize: '12px', color: '#666', marginBottom: '0.5rem' }}>Obra Social:</div>
+            <div style={{ fontSize: '12px', color: '#666', marginBottom: '0.5rem' }}>Insurance:</div>
             <TextSkeleton width={180} height={18} />
           </div>
 
           <div>
-            <div style={{ fontSize: '12px', color: '#666', marginBottom: '0.5rem' }}>Próxima Cita:</div>
+            <div style={{ fontSize: '12px', color: '#666', marginBottom: '0.5rem' }}>Next Appointment:</div>
             <TextSkeleton width={150} height={18} />
           </div>
 
           <div>
-            <div style={{ fontSize: '12px', color: '#666', marginBottom: '0.5rem' }}>Observaciones:</div>
+            <div style={{ fontSize: '12px', color: '#666', marginBottom: '0.5rem' }}>Notes:</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
               <TextSkeleton width={350} height={16} />
               <TextSkeleton width={320} height={16} />
@@ -172,7 +172,7 @@ export const InMedicalList: Story = {
         borderRadius: '8px',
       }}
     >
-      <h3 style={{ margin: '0 0 1.5rem 0' }}>Cargando Lista de Turnos</h3>
+      <h3 style={{ margin: '0 0 1.5rem 0' }}>Loading Appointments List</h3>
 
       <div style={{ display: 'grid', gap: '0.5rem' }}>
         {Array.from({ length: 6 }, (_, index) => (
@@ -211,7 +211,7 @@ export const InDashboard: Story = {
         boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
       }}
     >
-      <h3 style={{ margin: '0 0 2rem 0' }}>Dashboard Médico - Cargando</h3>
+      <h3 style={{ margin: '0 0 2rem 0' }}>Medical Dashboard - Loading</h3>
 
       <div
         style={{
@@ -316,9 +316,9 @@ export const AnimationDemo: Story = {
         maxWidth: '500px',
       }}
     >
-      <h3>Demostración de Animación Shimmer</h3>
+      <h3>Shimmer Animation Demo</h3>
       <p style={{ fontSize: '14px', color: '#666', marginBottom: '2rem' }}>
-        Los skeletons incluyen una animación shimmer que simula el efecto de carga.
+        Skeletons include a shimmer animation that simulates the loading effect.
       </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

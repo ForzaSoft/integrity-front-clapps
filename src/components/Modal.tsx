@@ -1,3 +1,4 @@
+import AlertTriangleOutlineIcon from '@/icons/AlertTriangleOutlineIcon';
 import clsx from 'clsx';
 import { FC, ReactNode, RefObject, useCallback, useImperativeHandle, useState } from 'react';
 import styles from './Modal.module.css';
@@ -34,6 +35,9 @@ const Modal: FC<ModalProps> = ({ ref, className, title, children }) => {
       <div className={styles.backdrop}>
         <div className={clsx(styles.modal, className)}>
           <div className={styles.header}>
+            <span className={styles.headerIcon}>
+              <AlertTriangleOutlineIcon color="white" />
+            </span>
             <span className={styles.headerText}>{title}</span>
           </div>
           <div className={styles.content}>{children}</div>

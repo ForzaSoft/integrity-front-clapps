@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Componente de navegación por pasos que muestra el progreso a través de una secuencia de pasos lógicos. Ideal para formularios multi-paso, wizards y procesos guiados.',
+          'Step navigation component that shows progress through a logical sequence of steps. Ideal for multi-step forms, wizards and guided processes.',
       },
     },
   },
@@ -19,15 +19,15 @@ const meta = {
   argTypes: {
     steps: {
       control: 'object',
-      description: 'Array de pasos a mostrar',
+      description: 'Array of steps to display',
     },
     currentStep: {
       control: 'number',
-      description: 'Índice del paso actual (0-based)',
+      description: 'Current step index (0-based)',
     },
     onStepClick: {
       action: 'clicked',
-      description: 'Función ejecutada al hacer clic en un paso',
+      description: 'Function executed when clicking on a step',
     },
   },
 } satisfies Meta<typeof Stepper>;
@@ -36,9 +36,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const defaultSteps = [
-  { id: 1, label: 'Datos personales' },
-  { id: 2, label: 'Información médica' },
-  { id: 3, label: 'Confirmación' },
+  { id: 1, label: 'Personal data' },
+  { id: 2, label: 'Medical information' },
+  { id: 3, label: 'Confirmation' },
 ];
 
 export const Basic: Story = {
@@ -52,10 +52,10 @@ export const Interactive = {
   render: () => {
     const [currentStep, setCurrentStep] = useState(0);
     const steps = [
-      { id: 1, label: 'Datos personales' },
-      { id: 2, label: 'Obra social' },
-      { id: 3, label: 'Turno' },
-      { id: 4, label: 'Confirmación' },
+      { id: 1, label: 'Personal data' },
+      { id: 2, label: 'Insurance' },
+      { id: 3, label: 'Appointment' },
+      { id: 4, label: 'Confirmation' },
     ];
 
     return (
@@ -63,19 +63,15 @@ export const Interactive = {
         <Stepper steps={steps} currentStep={currentStep} onStepClick={(step) => setCurrentStep(step)} />
 
         <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-          <Button
-            onClick={() => setCurrentStep((prev) => Math.max(0, prev - 1))}
-            disabled={currentStep === 0}
-            variant="outline"
-          >
-            Anterior
+          <Button onClick={() => setCurrentStep((prev) => Math.max(0, prev - 1))} disabled={currentStep === 0}>
+            Previous
           </Button>
           <Button
             onClick={() => setCurrentStep((prev) => Math.min(steps.length - 1, prev + 1))}
             disabled={currentStep === steps.length - 1}
             variant="primary"
           >
-            Siguiente
+            Next
           </Button>
         </div>
 
@@ -90,7 +86,7 @@ export const Interactive = {
         >
           <h3 style={{ margin: '0', color: '#4496ff' }}>{steps[currentStep].label}</h3>
           <p style={{ margin: '0.5rem 0 0 0', color: '#6c757d' }}>
-            Paso {currentStep + 1} de {steps.length}
+            Step {currentStep + 1} of {steps.length}
           </p>
         </div>
       </div>

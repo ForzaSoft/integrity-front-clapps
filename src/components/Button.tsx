@@ -4,7 +4,7 @@ import { ComponentPropsWithoutRef, JSX } from 'react';
 import styles from './Button.module.css';
 
 export interface ButtonProps extends Omit<ComponentPropsWithoutRef<'button'>, 'size'> {
-  variant?: 'primary' | 'success' | 'warning' | 'danger' | 'info';
+  variant?: 'primary'| 'secondary' | 'success' | 'warning' | 'danger' | 'info';
   appearance?: 'filled' | 'outline' | 'flat' | 'flat-inverted';
   size?: 'sm' | 'md' | 'lg';
   iconInputSize?: number;
@@ -20,9 +20,10 @@ const iconSize = {
 };
 
 const variantColors = {
-  primary: '#4496ff',
-  success: '#62b72d',
-  warning: '#ffee00',
+  primary: '#fff',
+  secondary: '#fff',
+  success: '#fff',
+  warning: '#8f8502ff',
   danger: '#ff0000',
   info: '#cccccc',
 };

@@ -1,5 +1,7 @@
+
 .button {
-  --primary-color: #023e8a;
+  --primary-color: #4496ff;
+  --secondary-color: #023e8a;
   --success-color: #62b72d;
   --warning-color: #ffc107;
   --warning-dark: #212529;
@@ -68,7 +70,9 @@
 .warning {
   --variant-color: var(--warning-color);
 }
-
+.secondary {
+  --variant-color: var(--secondary-color);
+}
 .danger {
   --variant-color: var(--danger-color);
 }
